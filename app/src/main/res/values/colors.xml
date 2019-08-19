@@ -7,4 +7,10 @@
     <color name="white">#FFFFFF</color>
     <color name="text_shadow">#7F000000</color>
     <color name="second_white">#C4FFFFFF</color>
+    <color name="orange">#FF6300</color>
+    <color name="special_black">#50555C</color>
+    <color name="special_black_date">#494A4C</color>
+    <color name="line_color">#DADADA</color>
+    <color name="special_black_about_request">#494A4D</color>
+    <color name="special_grey">#949191</color>
 </resources>

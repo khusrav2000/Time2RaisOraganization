@@ -22,4 +22,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_request">Create request</string>
+    <string name="adding_request_request">Request</string>
+    <string name="adding_request">adding request</string>
+    <string name="name">Name</string>
+    <string name="request_date">Date</string>
+    <string name="average_sum">Average sum</string>
+    <string name="number_of_events">Number of events hold</string>
+    <string name="name_request">Name request</string>
+    <string name="about_request">About request</string>
+    <string name="add_request">Add request</string>
 </resources>

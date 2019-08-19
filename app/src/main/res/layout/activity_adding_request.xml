@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddingRequest">
+
+
+    <TextView
+        android:id="@+id/top_adding_request"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_adding_request_height"
+        android:background="@drawable/login_background"
+        android:gravity="center"
+        android:lineSpacingExtra="10sp"
+        android:text="@string/adding_request"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="256dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_request"
+                android:textColor="@color/orange"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="@dimen/request_date_information"
+                android:layout_marginBottom="7dp"
+                app:layout_constraintBottom_toTopOf="@id/name_request"
+                app:layout_constraintStart_toStartOf="@id/name_request"/>
+
+            <EditText
+                android:id="@+id/name_request"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginStart="@dimen/margin_name_about_request"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="@dimen/margin_name_about_request"
+                android:background="@drawable/grey_border"
+                android:hint="@string/name"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/top_height_request"
+                android:src="@drawable/icon_date"
+                app:layout_constraintStart_toStartOf="@+id/name_request"
+                app:layout_constraintTop_toBottomOf="@+id/name_request" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+
+                android:text="@string/request_date"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/special_black"
+                android:textSize="@dimen/request_date_information"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+            <EditText
+                android:id="@+id/request_date"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/orange_border_radius"
+                android:gravity="center"
+                android:inputType="date"
+
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="@+id/name_request"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+            <EditText
+                android:id="@+id/request_time"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/orange_border_radius"
+                android:gravity="center"
+                android:inputType="time"
+
+
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/request_date"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/top_height_request"
+                android:src="@drawable/icon_dollar"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/average_sum"
+                android:textColor="@color/special_black_date"
+                android:textSize="@dimen/request_date_information"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            <EditText
+                android:id="@+id/average_sum"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                android:background="@drawable/orange_border_radius"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="@+id/name_request"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            <EditText
+                android:id="@+id/number_of_events_held"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:background="@drawable/orange_border_radius"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintEnd_toEndOf="@+id/name_request"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/top_height_request"
+                android:src="@drawable/icon_number"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/name_request"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_of_events"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/special_black"
+                android:textSize="@dimen/request_date_information"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="1.5dp"
+                android:background="@color/line_color"
+                app:layout_constraintBottom_toBottomOf="@+id/text_about_request"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_about_request" />
+
+            <TextView
+                android:id="@+id/text_about_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_request"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/special_black_about_request"
+                android:layout_marginTop="70dp"
+                app:layout_constraintTop_toBottomOf="@id/number_of_events_held"
+                app:layout_constraintLeft_toRightOf="parent"
+                app:layout_constraintRight_toLeftOf="parent"
+                />
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="1.5dp"
+                android:background="@color/line_color"
+                app:layout_constraintBottom_toBottomOf="@+id/text_about_request"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_about_request" />
+
+            <EditText
+                android:id="@+id/about_request"
+                android:layout_width="match_parent"
+                android:layout_height="129dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/margin_name_about_request"
+                android:layout_marginEnd="@dimen/margin_name_about_request"
+                android:padding="7dp"
+                android:textSize="12sp"
+                android:textColor="@color/special_grey"
+                android:fontFamily="@font/roboto_regular"
+                android:background="@drawable/grey_border_about_request"
+                app:layout_constraintEnd_toEndOf="@+id/name_request"
+                app:layout_constraintStart_toStartOf="@+id/name_request"
+                app:layout_constraintTop_toBottomOf="@id/text_about_request"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/orange_border_radius"
+                android:layout_marginStart="@dimen/margin_name_about_request"
+                android:layout_marginEnd="@dimen/margin_name_about_request"
+                app:layout_constraintEnd_toEndOf="@+id/name_request"
+                app:layout_constraintStart_toStartOf="@+id/name_request"
+                app:layout_constraintTop_toBottomOf="@id/about_request"
+                android:drawableStart="@drawable/icon_plus"
+
+                android:text="@string/add_request"
+                android:textAllCaps="false"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="13sp"
+                android:textColor="@color/orange"
+                android:gravity="center"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
