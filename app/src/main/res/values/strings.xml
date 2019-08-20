@@ -58,4 +58,7 @@
     <string name="initiator_name_error">Please enter your organization name.</string>
     <string name="email_error_exists">This email already exists!</string>
     <string name="password_error_count">Password must be greater than 6 characters.</string>
+    <string name="name_request_error">Please, enter request name.</string>
+    <string name="end">End</string>
+    <string name="start">Start</string>
 </resources>

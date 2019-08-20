@@ -83,32 +83,46 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-            <EditText
+            <TextView
                 android:id="@+id/request_date"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/orange_border_radius"
-                android:gravity="center"
-                android:inputType="date"
+                android:layout_marginEnd="30dp"
 
+                android:background="@drawable/orange_border_radius"
+
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintEnd_toEndOf="@+id/name_request"
+                app:layout_constraintEnd_toStartOf="@+id/request_time_start"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-            <EditText
-                android:id="@+id/request_time"
-                android:layout_width="100dp"
+            <TextView
+                android:id="@+id/request_time_start"
+                android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="15dp"
+                android:background="@drawable/orange_border_radius"
+
+
+                android:gravity="center"
+                android:hint="@string/start"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/request_time_end"
+                app:layout_constraintTop_toTopOf="@+id/imageView"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/request_time_end"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+
+
                 android:background="@drawable/orange_border_radius"
                 android:gravity="center"
-                android:inputType="time"
-
-
+                android:hint="@string/end"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintEnd_toStartOf="@+id/request_date"
+                app:layout_constraintEnd_toEndOf="@+id/name_request"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
 
 
@@ -226,6 +240,7 @@
                 app:layout_constraintTop_toBottomOf="@id/text_about_request"/>
 
             <Button
+                android:id="@+id/adding_request"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_marginTop="20dp"
@@ -244,7 +259,6 @@
                 android:textColor="@color/orange"
                 android:gravity="center"
                 />
-
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
