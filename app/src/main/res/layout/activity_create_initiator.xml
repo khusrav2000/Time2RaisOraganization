@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateInitiator">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up"
+                android:textSize="28sp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/orange_red"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginTop="20dp"
+                android:text="@string/name"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/special_black_initiators_edits"
+                android:textSize="14sp"/>
+            <EditText
+                android:id="@+id/initiator_name"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginEnd="@dimen/margin_initiators_edits"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/orange_border"
+                android:hint="@string/your_name"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginTop="20dp"
+                android:text="@string/email"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/special_black_initiators_edits"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/initiator_email"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginEnd="@dimen/margin_initiators_edits"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/orange_border"
+                android:hint="@string/your_email"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:inputType="textEmailAddress"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginTop="20dp"
+                android:text="@string/phone"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/special_black_initiators_edits"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/initiator_phone"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginEnd="@dimen/margin_initiators_edits"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/orange_border"
+                android:hint="@string/your_phone"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:inputType="phone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginTop="20dp"
+                android:text="@string/password"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/special_black_initiators_edits"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/initiator_password"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginEnd="@dimen/margin_initiators_edits"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/orange_border"
+                android:hint="@string/your_password"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:inputType="textPassword"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginTop="20dp"
+                android:text="@string/repeat_password"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/special_black_initiators_edits"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/initiator_repeat_password"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginEnd="@dimen/margin_initiators_edits"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/orange_border"
+                android:hint="@string/your_password"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:inputType="textPassword"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginEnd="@dimen/margin_initiators_edits"
+                android:layout_marginTop="30dp">
+
+                <CheckBox
+                    android:id="@+id/agree_with_terms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+
+
+            </RelativeLayout>
+            <Button
+                android:id="@+id/initiator_register"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/register_button"
+                android:text="@string/register"
+                android:textAllCaps="false"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="16sp"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/initiator_login"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/login_button_border_radius"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="16sp"
+                android:textColor="@color/orange"
+                android:layout_marginBottom="30dp" />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

@@ -66,20 +66,49 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"/>
 
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot_password"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="end"/>
         <Button
             android:id="@+id/login"
             android:layout_width="156dp"
             android:layout_height="48dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginBottom="64dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/login_button_border"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:enabled="false"
             android:text="@string/action_sign_in" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dont_have_account"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:alpha="0.6"/>
+            <TextView
+                android:id="@+id/create_initiator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/create"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
     </LinearLayout>
     <!--<ProgressBar
         android:id="@+id/loading"

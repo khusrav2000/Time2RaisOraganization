@@ -1,29 +1,58 @@
 package com.example.organization.data;
 
-import com.example.organization.data.model.LoggedInUser;
+import com.example.organization.data.apis.Initiator;
+import com.example.organization.data.model.LogInInitiator;
 
 import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
 public class LoginDataSource {
 
-    public Result<LoggedInUser> login(String username, String password) {
+    // Поля для временного храния данных (Класса) об организаторе.
+    static LogInInitiator initiator = null;
+
+    public Result<LogInInitiator> login(String username, String password) {
+
+        // Соединения с сервером с помощью класса NetworkClient.
+        Retrofit retrofit = NetworkClient.getRetrofitClient();
+        Initiator organization = retrofit.create(Initiator.class);
+
+        // Создания запроса для получения данных с серевера.
+        Call call = organization.logInInitiator(username, password);
+
 
         try {
-            // TODO: handle loggedInUser authentication
-            LoggedInUser fakeUser =
-                    new LoggedInUser(
-                            java.util.UUID.randomUUID().toString(),
-                            "Jane Doe");
-            return new Result.Success<>(fakeUser);
-        } catch (Exception e) {
-            return new Result.Error(new IOException("Error logging in", e));
+
+            // Выполнения запроса созданного вверху.
+            Response response = call.execute();
+
+            if(response.isSuccessful()){
+                initiator =(LogInInitiator) response.body();
+            }
+
+        } catch (IOException e) {
+            return new Result.Error(new IOException("Error logging in", new Exception()));
         }
+
+        if(initiator != null)
+            return new Result.Success<>(initiator);
+
+        else
+            return new Result.Error(new IOException("Error logging in", new Exception()));
+    }
+
+
+    public static LogInInitiator getInitiator() {
+        return initiator;
     }
 
     public void logout() {
-        // TODO: revoke authentication
+        initiator = null;
     }
 }
