@@ -11,12 +11,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements EventsFragment.OnFragmentInteractionListener,
+import com.example.organization.data.model.Events;
+
+public class MainActivity extends AppCompatActivity implements
+        ListEventsFragment.OnListFragmentInteractionListener,
         RequestsFragment.OnFragmentInteractionListener,
         MessagesFragment.OnFragmentInteractionListener{
 
     private TextView mTextMessage;
-    Fragment eventsFragment = new EventsFragment();
+    Fragment listEventsFragment = new ListEventsFragment();
     Fragment requestsFragment = new RequestsFragment();
     Fragment messagesFragment = new MessagesFragment();
 
@@ -38,8 +41,7 @@ public class MainActivity extends AppCompatActivity implements EventsFragment.On
             switch (item.getItemId()) {
                 case R.id.navigation_events:
                     System.out.println("Omad---------");
-
-                    transaction.replace(R.id.fragment, eventsFragment);
+                    transaction.replace(R.id.fragment, listEventsFragment);
                     transaction.commit();
                     return true;
                 case R.id.navigation_requests:
@@ -67,6 +69,11 @@ public class MainActivity extends AppCompatActivity implements EventsFragment.On
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(Events item) {
 
     }
 }

@@ -8,4 +8,5 @@
     <dimen name="top_height_request">20dp</dimen>
     <dimen name="margin_name_about_request">25dp</dimen>
     <dimen name="margin_initiators_edits">20dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>
