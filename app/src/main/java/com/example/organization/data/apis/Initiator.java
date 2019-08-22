@@ -1,6 +1,5 @@
 package com.example.organization.data.apis;
 
-import com.example.organization.ListEventsFragment;
 import com.example.organization.data.model.Events;
 import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.LogInInitiator;
@@ -38,4 +37,6 @@ public interface Initiator {
     @GET("api/init/event/{limit}")
     Call< List<Events> > getEvents(@Header("token") String token, @Path("limit") int limit);
 
+    @GET("api/init/event/orgevents/{limit}")
+    Call< List<Events> > getMyEvents(@Header("token") String token, @Path("limit") int limit);
 }

@@ -1,4 +1,4 @@
-package com.example.organization;
+package com.example.organization.ui.main;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.organization.ListEventsFragment.OnListFragmentInteractionListener;
+import com.example.organization.events.ListEventsFragment.OnListFragmentInteractionListener;
+import com.example.organization.R;
 import com.example.organization.data.model.Events;
 import com.example.organization.data.model.Photo;
 import com.squareup.picasso.Picasso;
@@ -16,7 +17,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link} and makes a call to the
@@ -25,8 +25,14 @@ import java.util.Locale;
  */
 public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyListEventsRecyclerViewAdapter.ViewHolder> {
 
+    // Список event-ов, которые мы получаем из сервера.
+    // Events - Это модель для помещения в него получаемых данных из сервера.
     private final List<Events> mValues;
+
     private final OnListFragmentInteractionListener mListener;
+
+    // Ссылка на хранилище фотографий этого проета.
+    // Фотографии находяться в GoogleDrive-е.
     String StorageUrl = "https://drive.google.com/uc?export=download&id=";
 
     View getContexts;
@@ -38,8 +44,10 @@ public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyList
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        // Скопируем layout, которое будем помещать в каждую строку ListView.
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_listevents, parent, false);
+                .inflate(R.layout.fragment_event_line, parent, false);
         getContexts = view;
         return new ViewHolder(view);
     }
@@ -51,7 +59,7 @@ public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyList
         holder.nameEvent.setText(mValues.get(position).getName());
         holder.eventStartEndTime.setText(mValues.get(position).getStart() + mValues.get(position).getEnd());
 
-
+        // Устанавливаем дату проведения event-а в нужном формате.
         String format = "MMM dd yyyy";
         SimpleDateFormat format1= new SimpleDateFormat(format);
         Date date1 = null;
@@ -60,24 +68,26 @@ public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyList
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        holder.eventDate.setText(format1.format(date1));
 
-        holder.eventDate.setText(format1.format(date1).toString());
-
+        // Список URL адресов фотографий event-а.
         List<Photo> photos = mValues.get(position).getPhotos();
 
         if (photos != null) {
+            // Если у event-а есть фотографии, то ищем какая из них главная и устанваливем его.
             for (Photo photo : photos) {
                 if (photo.isIsmain()) {
                     Picasso picasso = Picasso.get();
                     picasso.load(StorageUrl + photo.getUrl())
-                            .resize(125, 98)
-                            .centerCrop()
+                            .resize(125, 98)        // Длина и ширина фотографии.
+                            .centerCrop()                                 // Get center. Берём ценрт фотографии, все что помешается в заданный размер.
                             .into(holder.eventMainImage);
 
                 }
             }
         }
         else {
+            // Если у event-а нет фотографии то устанавливаем фотографию no photo.
             Picasso picasso = Picasso.get();
             picasso.load(R.drawable.no_photo).
                     resize(125,98)
@@ -97,6 +107,7 @@ public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyList
         });
     }
 
+    // Получения количество event-ов с списке.
     @Override
     public int getItemCount() {
         return mValues.size();
@@ -114,6 +125,8 @@ public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyList
         public ViewHolder(View view) {
             super(view);
             mView = view;
+
+            // Поля event-а.
             eventMainImage = view.findViewById(R.id.event_main_image);
             nameEvent = view.findViewById(R.id.event_name);
             eventStartEndTime = view.findViewById(R.id.event_start_end_time);

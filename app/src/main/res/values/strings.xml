@@ -20,7 +20,7 @@
     <string name="title_requests">requests</string>
     <string name="title_messages">messages</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_request">Create request</string>
     <string name="adding_request_request">Request</string>
@@ -62,4 +62,11 @@
     <string name="end">End</string>
     <string name="start">Start</string>
     <string name="event_name">Event name</string>
+    <string name="title_activity_test_tub">Test_tub</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="detail">Datail</string>
+    <string name="title_activity_events_tabbed_fragment">EventsTabbedFragment</string>
+    <string name="events">Events</string>
+    <string name="my_events">My events</string>
 </resources>

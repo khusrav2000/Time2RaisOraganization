@@ -8,20 +8,27 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.organization.data.model.Events;
+import com.example.organization.events.EventsTabbedFragment;
+import com.example.organization.events.ListEventsFragment;
+import com.example.organization.events.ListMyEventsFragment;
+import com.example.organization.requests.RequestsFragment;
 
 public class MainActivity extends AppCompatActivity implements
+        ListMyEventsFragment.OnListFragmentInteractionListener,
         ListEventsFragment.OnListFragmentInteractionListener,
+        EventsTabbedFragment.OnFragmentInteractionListener,
         RequestsFragment.OnFragmentInteractionListener,
         MessagesFragment.OnFragmentInteractionListener{
 
     private TextView mTextMessage;
-    Fragment listEventsFragment = new ListEventsFragment();
     Fragment requestsFragment = new RequestsFragment();
     Fragment messagesFragment = new MessagesFragment();
+    Fragment eventsTabbedFragment = new EventsTabbedFragment();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment, eventsTabbedFragment);
+        transaction.commit();
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
@@ -41,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements
             switch (item.getItemId()) {
                 case R.id.navigation_events:
                     System.out.println("Omad---------");
-                    transaction.replace(R.id.fragment, listEventsFragment);
+                    transaction.replace(R.id.fragment, eventsTabbedFragment);
                     transaction.commit();
                     return true;
                 case R.id.navigation_requests:
