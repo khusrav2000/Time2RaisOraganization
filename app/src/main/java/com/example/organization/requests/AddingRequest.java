@@ -2,6 +2,10 @@ package com.example.organization.requests;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +15,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.organization.MainActivity;
 import com.example.organization.R;
+import com.example.organization.data.LoginDataSource;
+import com.example.organization.data.NetworkClient;
+import com.example.organization.data.apis.Initiator;
+import com.example.organization.data.model.Events;
+import com.example.organization.data.model.Requests;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AddingRequest extends AppCompatActivity {
 
@@ -143,12 +159,35 @@ public class AddingRequest extends AppCompatActivity {
 
                 // Инициализация данных о request-е.
                 name = nameRequest.getText().toString().trim();
-                averageSum = Double.parseDouble(averageSumRequest.getText().toString());
-                numberOfEvents = Integer.parseInt(numberOfEventsHeld.getText().toString());
+
+                //averageSum = Double.parseDouble(averageSumRequest.getText().toString());
+                //numberOfEvents = Integer.parseInt(numberOfEventsHeld.getText().toString());
+
+                date = dateRequest.getText().toString().trim();
+                startTime = startTimeRequest.getText().toString().trim();
+                endTime = endTimeRequest.getText().toString().trim();
                 about = aboutRequest.getText().toString().trim();
 
                 if (validateData()){
+                    Requests request = new Requests(-1, -1,
+                            name, date, startTime, endTime, about, true);
 
+                    Retrofit retrofit = NetworkClient.getRetrofitClient();
+                    Initiator organization = retrofit.create(Initiator.class);
+                    Call call = organization.addRequest(LoginDataSource.getInitiator().getToken(), request);
+
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onResponse(Call call, Response response) {
+                            System.out.println(" ----------------------aDDDEEED ");
+                            startMainActivity();
+                        }
+
+                        @Override
+                        public void onFailure(Call call, Throwable t) {
+
+                        }
+                    });
                 }
             }
         });
@@ -177,12 +216,35 @@ public class AddingRequest extends AppCompatActivity {
 
     private boolean validateData() {
 
-        if (name.equals("")){
+        if (name == null || name.equals("")){
             nameRequest.setError(getString(R.string.name_request_error));
             nameRequest.requestFocus();
             return false;
         }
 
+        if (date == null || date.equals("")){
+            dateRequest.setError(getString(R.string.date_request_error));
+            dateRequest.requestFocus();
+            return false;
+        }
+
+        if (startTime == null || startTime.equals("")){
+            startTimeRequest.setError(getString(R.string.start_time_request_error));
+            startTimeRequest.requestFocus();
+            return false;
+        }
+
+        if (endTime == null || endTime.equals("")){
+            endTimeRequest.setError(getString(R.string.end_time_request_error));
+            endTimeRequest.requestFocus();
+            return false;
+        }
+
         return true;
     }
+    public void startMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }

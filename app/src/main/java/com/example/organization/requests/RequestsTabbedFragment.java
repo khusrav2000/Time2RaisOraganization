@@ -1,4 +1,4 @@
-package com.example.organization.events;
+package com.example.organization.requests;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,30 +12,17 @@ import android.view.ViewGroup;
 
 import com.example.organization.R;
 
-public class EventsTabbedFragment extends Fragment {
+public class RequestsTabbedFragment extends Fragment {
 
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.events_tabbed_fragment);
+    private RequestsTabbedFragment.OnFragmentInteractionListener mListener;
 
-        EventsSectionsPagerAdapter sectionsPagerAdapter = new EventsSectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
-
-    }*/
-    private OnFragmentInteractionListener mListener;
-
-    public EventsTabbedFragment() {
+    public RequestsTabbedFragment() {
     }
 
 
     @SuppressWarnings("unused")
-    public static ListEventsFragment newInstance(int columnCount) {
-        ListEventsFragment fragment = new ListEventsFragment();
+    public static ListRequestsFragment newInstance(int columnCount) {
+        ListRequestsFragment fragment = new ListRequestsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -51,12 +38,13 @@ public class EventsTabbedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.events_tabbed_fragment, container, false);
-        EventsSectionsPagerAdapter sectionsPagerAdapter = new EventsSectionsPagerAdapter(getActivity(), getChildFragmentManager());
-        ViewPager viewPager = view.findViewById(R.id.view_pager);
+        View view = inflater.inflate(R.layout.requests_tabbed_fragment, container, false);
+        RequestsSectionsPagerAdapter sectionsPagerAdapter = new RequestsSectionsPagerAdapter(getActivity(), getChildFragmentManager());
+
+        ViewPager viewPager = view.findViewById(R.id.requests_view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
 
-        TabLayout tabs = view.findViewById(R.id.tabs);
+        TabLayout tabs = view.findViewById(R.id.requests_tabs);
 
         tabs.setupWithViewPager(viewPager);
 
@@ -67,8 +55,8 @@ public class EventsTabbedFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof RequestsTabbedFragment.OnFragmentInteractionListener) {
+            mListener = (RequestsTabbedFragment.OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");

@@ -15,7 +15,6 @@ import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
 import com.example.organization.data.model.Events;
-import com.example.organization.ui.main.MyListMyEventsRecyclerViewAdapter;
 
 import java.util.List;
 
@@ -80,7 +79,7 @@ public class ListMyEventsFragment extends Fragment  {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            loadEvents();
+            loadMyEvents();
             //recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
@@ -119,7 +118,7 @@ public class ListMyEventsFragment extends Fragment  {
         void onListFragmentInteraction(Events item);
     }
 
-    private void loadEvents(){
+    private void loadMyEvents(){
 
         // Загрузка списка event-ов с сервера.
         Retrofit retrofit = NetworkClient.getRetrofitClient();
@@ -135,7 +134,7 @@ public class ListMyEventsFragment extends Fragment  {
 
                 if (response.isSuccessful()) {
                     List<Events> events = (List<Events>) response.body();
-                    System.out.println("----------------Events are loaded ---------------------------");
+                    System.out.println("----------------My Events are loaded ---------------------------");
                     setAdapter(events);
                 }
             }

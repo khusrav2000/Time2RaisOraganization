@@ -11,24 +11,34 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.organization.data.model.Events;
+import com.example.organization.data.model.Requests;
 import com.example.organization.events.EventsTabbedFragment;
 import com.example.organization.events.ListEventsFragment;
 import com.example.organization.events.ListMyEventsFragment;
-import com.example.organization.requests.RequestsFragment;
+import com.example.organization.requests.ListMyRequestsFragment;
+import com.example.organization.requests.ListRequestsFragment;
+import com.example.organization.requests.RequestsTabbedFragment;
 
 public class MainActivity extends AppCompatActivity implements
+        ListMyRequestsFragment.OnListFragmentInteractionListener,
+        ListRequestsFragment.OnListFragmentInteractionListener,
+        RequestsTabbedFragment.OnFragmentInteractionListener,
+
         ListMyEventsFragment.OnListFragmentInteractionListener,
         ListEventsFragment.OnListFragmentInteractionListener,
         EventsTabbedFragment.OnFragmentInteractionListener,
-        RequestsFragment.OnFragmentInteractionListener,
+
         MessagesFragment.OnFragmentInteractionListener{
 
     private TextView mTextMessage;
-    Fragment requestsFragment = new RequestsFragment();
+    Fragment requestsTabbedFragment = new RequestsTabbedFragment();
     Fragment messagesFragment = new MessagesFragment();
     Fragment eventsTabbedFragment = new EventsTabbedFragment();
 
 
+    public Fragment getRequestTabbedFragment(){
+        return requestsTabbedFragment;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements
                 case R.id.navigation_requests:
                     System.out.println("Omad---------");
 
-                    transaction.replace(R.id.fragment, requestsFragment);
+                    transaction.replace(R.id.fragment, requestsTabbedFragment);
                     transaction.commit();
                     return true;
                 case R.id.navigation_messages:
@@ -85,5 +95,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onListFragmentInteraction(Events item) {
 
+    }
+
+    @Override
+    public void onListFragmentInteraction(Requests item) {
+        System.out.println(item.toString());
     }
 }

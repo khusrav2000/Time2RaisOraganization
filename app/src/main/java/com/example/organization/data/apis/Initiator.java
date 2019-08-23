@@ -3,6 +3,7 @@ package com.example.organization.data.apis;
 import com.example.organization.data.model.Events;
 import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.LogInInitiator;
+import com.example.organization.data.model.Requests;
 import com.example.organization.data.model.SendInitiatorInformation;
 import com.example.organization.data.model.UniquensessEmail;
 
@@ -33,10 +34,23 @@ public interface Initiator {
     @GET("/api/init/valid/{email}")
     Call<UniquensessEmail> validationEmil(@Path("email") String email);
 
-
+    // Получения списка event-ов с лимитом в limit элементов.
     @GET("api/init/event/{limit}")
     Call< List<Events> > getEvents(@Header("token") String token, @Path("limit") int limit);
 
+    // Получения списка event-ов организатора с лимитов в limit элементов.
     @GET("api/init/event/orgevents/{limit}")
     Call< List<Events> > getMyEvents(@Header("token") String token, @Path("limit") int limit);
+
+    // Получения списка request-ов с лимитом в limit элементов.
+    @GET("api/init/request/{limit}")
+    Call< List<Requests> > getRequests(@Header("token") String token, @Path("limit") int limit);
+
+    // Получения списка request-ов организатора с лимитов в limit элементов.
+    @GET("api/init/request/orgrequests/{limit}")
+    Call< List<Requests> > getMyRequests(@Header("token") String token, @Path("limit") int limit);
+
+    @POST("api/init/request/add")
+    Call<Requests> addRequest(@Header("token") String token, @Body Requests requests);
+
 }

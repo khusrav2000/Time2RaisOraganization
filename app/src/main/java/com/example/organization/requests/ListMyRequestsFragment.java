@@ -1,6 +1,6 @@
-package com.example.organization.events;
-
+package com.example.organization.requests;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,12 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.organization.R;
 import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
-import com.example.organization.data.model.Events;
+import com.example.organization.data.model.Requests;
 
 import java.util.List;
 
@@ -30,26 +31,26 @@ import retrofit2.Retrofit;
  * interface.
  */
 
-public class ListEventsFragment extends Fragment  {
+public class ListMyRequestsFragment extends Fragment  {
 
 
     private static final String ARG_COLUMN_COUNT = "column-count";
 
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    private ListMyRequestsFragment.OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ListEventsFragment() {
+    public ListMyRequestsFragment() {
     }
 
 
     @SuppressWarnings("unused")
-    public static ListEventsFragment newInstance(int columnCount) {
-        ListEventsFragment fragment = new ListEventsFragment();
+    public static ListMyRequestsFragment newInstance(int columnCount) {
+        ListMyRequestsFragment fragment = new ListMyRequestsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -68,20 +69,27 @@ public class ListEventsFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_events_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_requests_list, container, false);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
+        if (view.findViewById(R.id.my_requests_list) instanceof RecyclerView) {
             Context context = view.getContext();
-            recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view.findViewById(R.id.my_requests_list);
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            loadEvents();
+            loadMyRequest();
             //recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
+        Button createRequest = view.findViewById(R.id.create_request);
+        createRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAddingRequest();
+            }
+        });
         return view;
     }
 
@@ -89,8 +97,8 @@ public class ListEventsFragment extends Fragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        if (context instanceof ListMyRequestsFragment.OnListFragmentInteractionListener) {
+            mListener = (ListMyRequestsFragment.OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
@@ -115,26 +123,26 @@ public class ListEventsFragment extends Fragment  {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Events item);
+        void onListFragmentInteraction(Requests item);
     }
 
-    private void loadEvents(){
+    private void loadMyRequest(){
 
-        // Загрузка списка event-ов с сервера.
+        // Загрузка списка request-ов с сервера.
         Retrofit retrofit = NetworkClient.getRetrofitClient();
         Initiator iOrganization = retrofit.create(Initiator.class);
 
         // TODO: Поменять лимит для количество event-ов.
-        Call call = iOrganization.getEvents(LoginDataSource.getInitiator().getToken(), 25);
+        Call call = iOrganization.getMyRequests(LoginDataSource.getInitiator().getToken(), 25);
 
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
 
                 if (response.isSuccessful()) {
-                    List<Events> events = (List<Events>) response.body();
-                    System.out.println("----------------Events are loaded ---------------------------");
-                    setAdapter(events);
+                    List<Requests> requests = (List<Requests>) response.body();
+                    System.out.println("----------------MyRequests are loaded ---------------------------");
+                    setAdapter(requests);
                 }
             }
 
@@ -145,7 +153,12 @@ public class ListEventsFragment extends Fragment  {
         });
     }
 
-    private void setAdapter(List<Events> events){
-        recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(events, mListener));
+    private void setAdapter(List<Requests> requests){
+        recyclerView.setAdapter(new MyListMyRequestsRecyclerViewAdapter(requests, mListener));
+    }
+
+    private void startAddingRequest() {
+        Intent intent = new Intent(getActivity(), AddingRequest.class);
+        startActivity(intent);
     }
 }

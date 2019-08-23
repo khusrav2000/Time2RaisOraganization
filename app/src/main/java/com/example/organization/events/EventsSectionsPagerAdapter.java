@@ -1,4 +1,4 @@
-package com.example.organization.ui.main;
+package com.example.organization.events;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -15,13 +15,13 @@ import com.example.organization.R;
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class EventsSectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.events, R.string.my_events};
     private final Context mContext;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public EventsSectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }

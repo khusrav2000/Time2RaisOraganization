@@ -69,4 +69,9 @@
     <string name="title_activity_events_tabbed_fragment">EventsTabbedFragment</string>
     <string name="events">Events</string>
     <string name="my_events">My events</string>
+    <string name="requests">Requests</string>
+    <string name="my_requests">My requests</string>
+    <string name="date_request_error">Please enter date.</string>
+    <string name="start_time_request_error">Please enter start time.</string>
+    <string name="end_time_request_error">Please enter end time.</string>
 </resources>

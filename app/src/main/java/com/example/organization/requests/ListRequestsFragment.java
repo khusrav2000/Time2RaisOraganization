@@ -1,4 +1,4 @@
-package com.example.organization.events;
+package com.example.organization.requests;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import com.example.organization.R;
 import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
-import com.example.organization.data.model.Events;
+import com.example.organization.data.model.Requests;
 
 import java.util.List;
 
@@ -23,33 +23,26 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
-
-public class ListEventsFragment extends Fragment  {
+public class ListRequestsFragment extends Fragment {
 
 
     private static final String ARG_COLUMN_COUNT = "column-count";
 
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    private ListRequestsFragment.OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ListEventsFragment() {
+    public ListRequestsFragment() {
     }
 
 
     @SuppressWarnings("unused")
-    public static ListEventsFragment newInstance(int columnCount) {
-        ListEventsFragment fragment = new ListEventsFragment();
+    public static ListRequestsFragment newInstance(int columnCount) {
+        ListRequestsFragment fragment = new ListRequestsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -68,7 +61,7 @@ public class ListEventsFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_events_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_requests_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -79,9 +72,10 @@ public class ListEventsFragment extends Fragment  {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            loadEvents();
+            loadRequests();
             //recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
+
         return view;
     }
 
@@ -89,8 +83,8 @@ public class ListEventsFragment extends Fragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        if (context instanceof ListRequestsFragment.OnListFragmentInteractionListener) {
+            mListener = (ListRequestsFragment.OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
@@ -115,26 +109,26 @@ public class ListEventsFragment extends Fragment  {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Events item);
+        void onListFragmentInteraction(Requests item);
     }
 
-    private void loadEvents(){
+    private void loadRequests(){
 
         // Загрузка списка event-ов с сервера.
         Retrofit retrofit = NetworkClient.getRetrofitClient();
         Initiator iOrganization = retrofit.create(Initiator.class);
 
         // TODO: Поменять лимит для количество event-ов.
-        Call call = iOrganization.getEvents(LoginDataSource.getInitiator().getToken(), 25);
+        Call call = iOrganization.getRequests(LoginDataSource.getInitiator().getToken(), 25);
 
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
 
                 if (response.isSuccessful()) {
-                    List<Events> events = (List<Events>) response.body();
-                    System.out.println("----------------Events are loaded ---------------------------");
-                    setAdapter(events);
+                    List<Requests> requests = (List<Requests>) response.body();
+                    System.out.println("----------------Requests are loaded ---------------------------");
+                    setAdapter(requests);
                 }
             }
 
@@ -145,7 +139,7 @@ public class ListEventsFragment extends Fragment  {
         });
     }
 
-    private void setAdapter(List<Events> events){
-        recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(events, mListener));
+    private void setAdapter(List<Requests> requests){
+        recyclerView.setAdapter(new MyListRequestsRecyclerViewAdapter(requests, mListener));
     }
 }

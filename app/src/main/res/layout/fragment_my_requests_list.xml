@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".requests.RequestsFragment">
-
-
+    android:layout_height="wrap_content">
     <Button
         android:id="@+id/create_request"
         android:layout_width="match_parent"
@@ -22,4 +20,17 @@
         android:drawableStart="@drawable/icon_plus"
         android:text="@string/create_request"/>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_requests_list"
+        android:name="com.example.organization.ListMyEventsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".requests.ListMyRequestsFragment"
+        android:background="@drawable/events_requests_background"
+        android:layout_below="@id/create_request"
+        tools:listitem="@layout/fragment_my_request_line" >
+
+
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

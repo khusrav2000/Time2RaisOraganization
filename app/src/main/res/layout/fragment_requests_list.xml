@@ -2,11 +2,11 @@
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/events_list"
+    android:id="@+id/requests_list"
     android:name="com.example.organization.ListEventsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".events.ListEventsFragment"
+    tools:context=".requests.ListRequestsFragment"
     android:background="@drawable/events_requests_background"
-    tools:listitem="@layout/fragment_event_line" />
+    tools:listitem="@layout/fragment_request_line" />
