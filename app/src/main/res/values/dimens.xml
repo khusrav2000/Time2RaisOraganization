@@ -13,4 +13,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="event_end_margin">20dp</dimen>
+    <dimen name="request_info_margins">20dp</dimen>
+    <dimen name="request_info_start_margin">20dp</dimen>
 </resources>

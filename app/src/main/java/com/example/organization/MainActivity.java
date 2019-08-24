@@ -1,5 +1,6 @@
 package com.example.organization;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -99,6 +100,13 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onListFragmentInteraction(Requests item) {
-        System.out.println(item.toString());
+        startRequestInfoActivity(item);
+    }
+
+    public void startRequestInfoActivity(Requests requests){
+        Intent intent = new Intent(this, RequestsDetail.class);
+        intent.putExtra("request", requests.getRequestId());
+        startActivity(intent);
+
     }
 }

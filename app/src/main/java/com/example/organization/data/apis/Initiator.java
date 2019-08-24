@@ -43,7 +43,7 @@ public interface Initiator {
     Call< List<Events> > getMyEvents(@Header("token") String token, @Path("limit") int limit);
 
     // Получения списка request-ов с лимитом в limit элементов.
-    @GET("api/init/request/{limit}")
+    @GET("api/init/requests/{limit}")
     Call< List<Requests> > getRequests(@Header("token") String token, @Path("limit") int limit);
 
     // Получения списка request-ов организатора с лимитов в limit элементов.
@@ -53,4 +53,6 @@ public interface Initiator {
     @POST("api/init/request/add")
     Call<Requests> addRequest(@Header("token") String token, @Body Requests requests);
 
+    @GET("api/init/request/{requestId}")
+    Call<Requests> getRequestByRequestId(@Header("token") String token, @Path("requestId") int requestId);
 }

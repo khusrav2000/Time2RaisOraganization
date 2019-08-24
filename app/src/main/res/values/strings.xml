@@ -74,4 +74,11 @@
     <string name="date_request_error">Please enter date.</string>
     <string name="start_time_request_error">Please enter start time.</string>
     <string name="end_time_request_error">Please enter end time.</string>
+    <string name="request_info_date">Request date</string>
+    <string name="request_info_time">Request time</string>
+    <string name="request_amount_part">Amount participants</string>
+    <string name="amount_part_price">Price</string>
+    <string name="number_of_events_held">Number of events held</string>
+    <string name="request_number_of_events_held">Number</string>
+    <string name="empty">Empty</string>
 </resources>

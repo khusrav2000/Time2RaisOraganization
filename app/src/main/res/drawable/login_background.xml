@@ -8,6 +8,6 @@
         android:startColor="#E5293E"
         android:endColor="#FF6300"
         android:gradientRadius="250"
-        android:type="linear"
+        android:angle="90"
         />
 </shape>

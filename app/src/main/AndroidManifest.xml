@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".RequestsDetail"></activity>
         <activity
             android:name=".CreateInitiator"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"

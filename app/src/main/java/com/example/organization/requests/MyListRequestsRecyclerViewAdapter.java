@@ -105,6 +105,7 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
+                    // Информация о request-е идёк в MainClass в метод onListFragmentInteraction через класс ListRequestsFragment.
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
             }
