@@ -9,10 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.organization.data.model.Events;
-import com.example.organization.data.model.Requests;
+import com.example.organization.data.model.Request;
 import com.example.organization.events.EventsTabbedFragment;
 import com.example.organization.events.ListEventsFragment;
 import com.example.organization.events.ListMyEventsFragment;
@@ -46,11 +48,25 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
+        ImageView buttonProfile = findViewById(R.id.icon_profile);
+        buttonProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startProfile();
+            }
+        });
+
         mTextMessage = findViewById(R.id.message);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment, eventsTabbedFragment);
         transaction.commit();
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private void startProfile() {
+        Intent intent = new Intent(this, InitiatorProfile.class);
+        startActivity(intent);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -99,11 +115,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onListFragmentInteraction(Requests item) {
+    public void onListFragmentInteraction(Request item) {
         startRequestInfoActivity(item);
     }
 
-    public void startRequestInfoActivity(Requests requests){
+    public void startRequestInfoActivity(Request requests){
         Intent intent = new Intent(this, RequestsDetail.class);
         intent.putExtra("request", requests.getRequestId());
         startActivity(intent);

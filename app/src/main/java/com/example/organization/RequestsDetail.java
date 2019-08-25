@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
-import com.example.organization.data.model.Requests;
+import com.example.organization.data.model.Request;
 
 
 import retrofit2.Call;
@@ -42,14 +42,17 @@ public class RequestsDetail extends AppCompatActivity {
         Retrofit retrofit = NetworkClient.getRetrofitClient();
         Initiator iOrganization = retrofit.create(Initiator.class);
 
+
+
         Call call = iOrganization.getRequestByRequestId(LoginDataSource.getInitiator().getToken(), requestId);
 
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 if (response.isSuccessful()) {
-                    Requests request = (Requests) response.body();
-                    setRequestInformation(request);
+                    Request request = (Request) response.body();
+                    if (request != null)
+                        setRequestInformation(request);
 
                 }
             }
@@ -61,7 +64,8 @@ public class RequestsDetail extends AppCompatActivity {
         });
     }
 
-    public void setRequestInformation(Requests request){
+    public void setRequestInformation(Request request){
+
         if (request.getName() != null)
             requestName.setText(request.getName());
 

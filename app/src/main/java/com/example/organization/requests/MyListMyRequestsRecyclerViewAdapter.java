@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.organization.data.model.Requests;
+import com.example.organization.data.model.Request;
 import com.example.organization.R;
 import com.example.organization.data.model.Photo;
 import com.squareup.picasso.Picasso;
@@ -25,7 +25,7 @@ import java.util.List;
 public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyListMyRequestsRecyclerViewAdapter.ViewHolder> {
 
 
-    private final List<Requests> mValues;
+    private final List<Request> mValues;
 
     private final ListMyRequestsFragment.OnListFragmentInteractionListener mListener;
 
@@ -35,7 +35,7 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
     View getContexts;
 
 
-    public MyListMyRequestsRecyclerViewAdapter(List<Requests> requests, ListMyRequestsFragment.OnListFragmentInteractionListener listener) {
+    public MyListMyRequestsRecyclerViewAdapter(List<Request> requests, ListMyRequestsFragment.OnListFragmentInteractionListener listener) {
         mValues = requests;
         mListener = listener;
 
@@ -124,7 +124,7 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
         public final TextView myRequestStartEndTime;
         public final TextView myRequestDate;
 
-        public Requests mItem;
+        public Request mItem;
 
         public ViewHolder(View view) {
             super(view);

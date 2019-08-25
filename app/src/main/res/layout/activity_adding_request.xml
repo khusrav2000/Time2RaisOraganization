@@ -8,26 +8,34 @@
     android:focusableInTouchMode="true"
     tools:context=".requests.AddingRequest">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/adding_requests_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbars_background"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:id="@+id/top_adding_request"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_adding_request_height"
-        android:background="@drawable/login_background"
+        android:background="@drawable/toolbars_background"
         android:gravity="center"
+        android:layout_marginTop="0.5dp"
         android:lineSpacingExtra="10sp"
         android:text="@string/adding_request"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/adding_requests_toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="256dp">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/top_adding_request">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

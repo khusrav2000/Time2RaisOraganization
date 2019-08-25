@@ -81,4 +81,24 @@
     <string name="number_of_events_held">Number of events held</string>
     <string name="request_number_of_events_held">Number</string>
     <string name="empty">Empty</string>
+    <string name="initiator_name">Name</string>
+    <string name="initiator_email">Email</string>
+    <string name="photo_gallery">Photo gallery</string>
+    <string name="add_photo">Add photo</string>
+    <string name="profile">Profile</string>
+    <string name="organization_name">Organization name</string>
+    <string name="organization_email">Email</string>
+    <string name="organization_phone">Phone</string>
+    <string name="initiator_phone">Phone</string>
+    <string name="initiator_address">Address</string>
+    <string name="organization_address">Address</string>
+    <string name="initiator_zip_code">Zip Code</string>
+    <string name="organization_zip_code">Zip Code</string>
+    <string name="about_us">About us</string>
+    <string name="save">Save</string>
+    <string name="change_password">Change password</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm">Confirm password</string>
+    <string name="change">Change</string>
 </resources>

@@ -14,7 +14,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_background"
+            android:background="@drawable/toolbars_background"
             app:tabGravity="fill"
             app:tabMaxWidth="0dp"
             app:tabIndicatorHeight="?actionBarSize"

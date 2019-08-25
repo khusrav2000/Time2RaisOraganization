@@ -3,7 +3,7 @@ package com.example.organization.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Requests {
+public class Request {
     @SerializedName("RequestID")
     @Expose
     private int requestId;
@@ -36,7 +36,7 @@ public class Requests {
     @Expose
     private boolean isActive;
 
-    public Requests(int requestId, int initID, String name, String date, String start, String end, String about, boolean isActive) {
+    public Request(int requestId, int initID, String name, String date, String start, String end, String about, boolean isActive) {
         this.requestId = requestId;
         this.initID = initID;
         this.name = name;
@@ -113,7 +113,7 @@ public class Requests {
 
     @Override
     public String toString() {
-        return "Requests{" +
+        return "Request{" +
                 "requestId=" + requestId +
                 ", initID=" + initID +
                 ", name='" + name + '\'' +

@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.organization.data.model.Requests;
+import com.example.organization.data.model.Request;
 import com.example.organization.requests.ListRequestsFragment.OnListFragmentInteractionListener;
 import com.example.organization.R;
 import com.example.organization.data.model.Photo;
@@ -28,7 +28,7 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
 
     // Список event-ов, которые мы получаем из сервера.
     // Events - Это модель для помещения в него получаемых данных из сервера.
-    private final List<Requests> mValues;
+    private final List<Request> mValues;
 
     private final ListRequestsFragment.OnListFragmentInteractionListener mListener;
 
@@ -38,7 +38,7 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
 
     View getContexts;
 
-    public MyListRequestsRecyclerViewAdapter(List<Requests> items, OnListFragmentInteractionListener listener) {
+    public MyListRequestsRecyclerViewAdapter(List<Request> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -139,7 +139,7 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
         public final TextView requestDate;
         public final Button requestDetail;
 
-        public Requests mItem;
+        public Request mItem;
 
         public ViewHolder(View view) {
             super(view);

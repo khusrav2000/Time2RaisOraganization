@@ -3,11 +3,9 @@ package com.example.organization.requests;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,8 +18,7 @@ import com.example.organization.R;
 import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
-import com.example.organization.data.model.Events;
-import com.example.organization.data.model.Requests;
+import com.example.organization.data.model.Request;
 
 
 import java.text.SimpleDateFormat;
@@ -78,6 +75,13 @@ public class AddingRequest extends AppCompatActivity {
         numberOfEventsHeld      = findViewById(R.id.number_of_events_held);
         aboutRequest            = findViewById(R.id.about_request);
 
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.adding_requests_toolbar);
+
+        setSupportActionBar(myToolbar);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // установка обработчика выбора даты для request-а.
         final DatePickerDialog.OnDateSetListener selectDateRequest = new DatePickerDialog.OnDateSetListener() {
@@ -169,7 +173,7 @@ public class AddingRequest extends AppCompatActivity {
                 about = aboutRequest.getText().toString().trim();
 
                 if (validateData()){
-                    Requests request = new Requests(-1, -1,
+                    Request request = new Request(-1, -1,
                             name, date, startTime, endTime, about, true);
 
                     Retrofit retrofit = NetworkClient.getRetrofitClient();

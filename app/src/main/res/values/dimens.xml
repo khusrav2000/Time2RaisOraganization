@@ -15,4 +15,7 @@
     <dimen name="event_end_margin">20dp</dimen>
     <dimen name="request_info_margins">20dp</dimen>
     <dimen name="request_info_start_margin">20dp</dimen>
+    <dimen name="vertical_top_margin">15dp</dimen>
+    <dimen name="profile_vertical_top_margin">15dp</dimen>
+    <dimen name="profile_start_end_margins">30dp</dimen>
 </resources>

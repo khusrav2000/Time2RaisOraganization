@@ -15,7 +15,7 @@ import com.example.organization.R;
 import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
-import com.example.organization.data.model.Requests;
+import com.example.organization.data.model.Request;
 
 import java.util.List;
 
@@ -123,7 +123,7 @@ public class ListMyRequestsFragment extends Fragment  {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Requests item);
+        void onListFragmentInteraction(Request item);
     }
 
     private void loadMyRequest(){
@@ -140,7 +140,7 @@ public class ListMyRequestsFragment extends Fragment  {
             public void onResponse(Call call, Response response) {
 
                 if (response.isSuccessful()) {
-                    List<Requests> requests = (List<Requests>) response.body();
+                    List<Request> requests = (List<Request>) response.body();
                     System.out.println("----------------MyRequests are loaded ---------------------------");
                     setAdapter(requests);
                 }
@@ -153,7 +153,7 @@ public class ListMyRequestsFragment extends Fragment  {
         });
     }
 
-    private void setAdapter(List<Requests> requests){
+    private void setAdapter(List<Request> requests){
         recyclerView.setAdapter(new MyListMyRequestsRecyclerViewAdapter(requests, mListener));
     }
 

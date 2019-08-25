@@ -3,7 +3,7 @@ package com.example.organization.data.apis;
 import com.example.organization.data.model.Events;
 import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.LogInInitiator;
-import com.example.organization.data.model.Requests;
+import com.example.organization.data.model.Request;
 import com.example.organization.data.model.SendInitiatorInformation;
 import com.example.organization.data.model.UniquensessEmail;
 
@@ -44,15 +44,29 @@ public interface Initiator {
 
     // Получения списка request-ов с лимитом в limit элементов.
     @GET("api/init/requests/{limit}")
-    Call< List<Requests> > getRequests(@Header("token") String token, @Path("limit") int limit);
+    Call< List<Request> > getRequests(@Header("token") String token, @Path("limit") int limit);
 
     // Получения списка request-ов организатора с лимитов в limit элементов.
     @GET("api/init/request/orgrequests/{limit}")
-    Call< List<Requests> > getMyRequests(@Header("token") String token, @Path("limit") int limit);
+    Call< List<Request> > getMyRequests(@Header("token") String token, @Path("limit") int limit);
 
+    // Добавления request-ов.
+    // В теле(Body) отправляется данные о request-е как модель Request.
     @POST("api/init/request/add")
-    Call<Requests> addRequest(@Header("token") String token, @Body Requests requests);
+    Call<Request> addRequest(@Header("token") String token, @Body Request requests);
 
+    // Получения данных с фотографиями об request-е.
     @GET("api/init/request/{requestId}")
-    Call<Requests> getRequestByRequestId(@Header("token") String token, @Path("requestId") int requestId);
+    Call<Request> getRequestByRequestId(@Header("token") String token, @Path("requestId") int requestId);
+
+    // Получения данных и рисунков об Организаторе.
+    @GET("api/init/")
+    Call<InitiatorInformation> getProfileById(@Header("token") String token);
+
+    // Обновления данных о организаторе.
+    @POST("api/init/profil/update")
+    Call<InitiatorInformation> setProfileInformation(@Header("token") String token,
+                                                     @Body SendInitiatorInformation sendInitiatorInformation);
+
+
 }

@@ -8,9 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.organization.R;
-import com.example.organization.data.model.Requests;
-import com.example.organization.events.ListEventsFragment;
-import com.example.organization.events.ListMyEventsFragment;
 
 public class RequestsSectionsPagerAdapter extends FragmentPagerAdapter {
 
