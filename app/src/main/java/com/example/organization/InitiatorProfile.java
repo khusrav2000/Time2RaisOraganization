@@ -127,7 +127,7 @@ public class InitiatorProfile extends AppCompatActivity {
     public void saveInitiatorInformation(InitiatorInformation initiatorInformation) {
         Picasso picasso = Picasso.get();
         picasso.load(storageUrl + initiatorInformation.getBackgroundImageUrl())
-                .resize(-1,156)// Длина и ширина фотографии.
+                .fit()// Длина и ширина фотографии будет таким каким задано в XML файле.
                 .centerCrop()// Get center. Берём ценрт фотографии, все что помешается в заданный размер.
                 .into(backgoundProfileImage);
 

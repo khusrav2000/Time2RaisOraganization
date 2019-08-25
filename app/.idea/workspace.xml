@@ -65,29 +65,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6092e7e9-9b98-439c-90b7-f54bcddd2c3c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/RequestsDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/RequestsDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/data/apis/Initiator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/data/apis/Initiator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/data/model/InitiatorInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/data/model/InitiatorInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/data/model/Requests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/data/model/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/AddingRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/AddingRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/ListMyRequestsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/ListMyRequestsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/ListRequestsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/ListRequestsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/MyListMyRequestsRecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/MyListMyRequestsRecyclerViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/MyListRequestsRecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/MyListRequestsRecyclerViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/RequestsSectionsPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/requests/RequestsSectionsPagerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/orange_border_radius.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/orange_border_radius.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_adding_request.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_adding_request.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/events_tabbed_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/events_tabbed_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/requests_tabbed_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/requests_tabbed_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/organization/InitiatorProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/organization/InitiatorProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_initiator_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_initiator_profile.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,8 +110,8 @@
         <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_initiator_profile.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="282" column="34" selection-start-line="282" selection-start-column="34" selection-end-line="282" selection-end-column="34" />
+            <state relative-caret-position="152">
+              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
               <folding>
                 <element signature="e#1331#1355#0" expanded="true" />
                 <element signature="e#1480#1516#0" expanded="true" />
@@ -203,8 +183,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/InitiatorProfile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="131" column="45" lean-forward="true" selection-start-line="131" selection-start-column="45" selection-end-line="131" selection-end-column="45" />
+            <state relative-caret-position="161">
+              <caret line="129" column="87" selection-start-line="129" selection-start-column="87" selection-end-line="129" selection-end-column="87" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3675#3833#0" expanded="true" />
@@ -349,8 +329,8 @@
         <option value="$PROJECT_DIR$/src/main/res/drawable/button_save_orange.xml" />
         <option value="$PROJECT_DIR$/src/main/res/drawable/button_change_green.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/organization/data/model/InitiatorInformation.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_initiator_profile.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/organization/data/apis/Initiator.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_initiator_profile.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/organization/InitiatorProfile.java" />
       </list>
     </option>
@@ -369,51 +349,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Organization" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="Organization" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="Organization" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="organization" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Organization" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="organization" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Organization" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="organization" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="apis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Organization" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="organization" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
@@ -571,7 +507,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49470899" visible="true" weight="0.26882592" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49470899" weight="0.26882592" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" sideWeight="0.505291" side_tool="true" weight="0.22753036" />
@@ -579,7 +515,7 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
-      <window_info active="true" anchor="bottom" id="Run" order="0" visible="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="Run" order="0" visible="true" weight="0.3285968" />
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.3285968" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.3285968" />
       <window_info anchor="bottom" id="Debug" order="3" />
@@ -1019,11 +955,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/CreateInitiator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="94" column="57" selection-start-line="94" selection-start-column="57" selection-end-line="94" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/data/apis/Initiator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="68" column="108" selection-start-line="68" selection-start-column="108" selection-end-line="68" selection-end-column="108" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/data/model/SendInitiatorInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/data/model/InitiatorInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/requests/ListMyRequestsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1994">
+          <caret line="143" column="108" selection-start-line="143" selection-start-column="108" selection-end-line="143" selection-end-column="108" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_initiator_profile.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="282" column="34" selection-start-line="282" selection-start-column="34" selection-end-line="282" selection-end-column="34" />
+        <state relative-caret-position="152">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
           <folding>
             <element signature="e#1331#1355#0" expanded="true" />
             <element signature="e#1480#1516#0" expanded="true" />
@@ -1082,51 +1059,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/CreateInitiator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="94" column="57" selection-start-line="94" selection-start-column="57" selection-end-line="94" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/data/apis/Initiator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="68" column="108" selection-start-line="68" selection-start-column="108" selection-end-line="68" selection-end-column="108" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/data/model/SendInitiatorInformation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/data/model/InitiatorInformation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/requests/ListMyRequestsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1994">
-          <caret line="143" column="108" selection-start-line="143" selection-start-column="108" selection-end-line="143" selection-end-column="108" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/organization/InitiatorProfile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="131" column="45" lean-forward="true" selection-start-line="131" selection-start-column="45" selection-end-line="131" selection-end-column="45" />
+        <state relative-caret-position="161">
+          <caret line="129" column="87" selection-start-line="129" selection-start-column="87" selection-end-line="129" selection-end-column="87" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3675#3833#0" expanded="true" />

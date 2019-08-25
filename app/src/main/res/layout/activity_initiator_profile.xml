@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/background_profile_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="159dp"
             android:src="@drawable/mish_strela"
             app:layout_constraintTop_toTopOf="parent" />
 
