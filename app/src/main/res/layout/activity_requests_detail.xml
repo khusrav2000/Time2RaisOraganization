@@ -1,194 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/events_requests_background"
-    tools:context=".RequestsDetail">
+    android:background="@drawable/events_requests_background">
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/request_detail"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbars_background"
+        app:layout_constraintTop_toTopOf="parent">
+    </android.support.v7.widget.Toolbar>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/white"
-        android:layout_marginTop="@dimen/request_info_margins"
-        android:layout_marginStart="@dimen/request_info_margins"
-        android:layout_marginEnd="@dimen/request_info_margins"
-        android:layout_marginBottom="@dimen/request_info_margins">
-
-        <TextView
-            android:id="@+id/request_info_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/name_request"
-            android:textColor="@color/orange"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="200dp"
-            android:layout_height="1.5dp"
-            android:layout_below="@id/request_info_name"
-            android:layout_marginTop="10dp"
-            android:background="@color/line_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/request_info_name" />
-
-        <TextView
-            android:id="@+id/request_info_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/request_info_name"
-            android:layout_marginStart="@dimen/request_info_start_margin"
-            android:layout_marginTop="30dp"
-            android:drawableStart="@drawable/icon_request_date"
-            android:drawablePadding="5dp"
-            android:gravity="center_vertical"
-            android:text="@string/request_info_date"
-            android:textColor="@color/special_black_initiators_edits"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
-
-        <TextView
-            android:id="@+id/request_info_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/request_info_date"
-            android:layout_marginTop="10dp"
-            android:drawableStart="@drawable/icon_request_time"
-            android:drawablePadding="5dp"
-            android:gravity="center_vertical"
-            android:text="@string/request_info_time"
-            android:textColor="@color/special_black_initiators_edits"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/request_info_date"
-            app:layout_constraintTop_toBottomOf="@+id/request_info_date" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_below="@id/request_info_time"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/request_info_start_margin"
-            android:layout_marginTop="20dp"
-            android:background="@color/line_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/request_info_date"
-            app:layout_constraintTop_toBottomOf="@+id/request_info_time" />
-
-        <TextView
-            android:id="@+id/text_request_amount_part"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/request_info_time"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/icon_dollar"
-            android:drawablePadding="5dp"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_vertical"
-            android:text="@string/request_amount_part"
-            android:textColor="@color/special_black_initiators_edits"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/request_info_date"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-        <TextView
-            android:id="@+id/request_amount_part_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/request_info_time"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/text_request_amount_part"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/amount_part_price"
-            android:textColor="@color/orange"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/text_request_amount_part"
-            app:layout_constraintStart_toEndOf="@+id/text_request_amount_part"
-            app:layout_constraintTop_toTopOf="@+id/text_request_amount_part" />
-
-        <TextView
-            android:id="@+id/text_request_number_of_events_held"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/request_info_time"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/icon_number"
-            android:drawablePadding="5dp"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_vertical"
-            android:text="@string/number_of_events_held"
-            android:textColor="@color/special_black_initiators_edits"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/request_info_date"
-            app:layout_constraintTop_toBottomOf="@+id/text_request_amount_part" />
-
-        <TextView
-            android:id="@+id/request_number_of_events_held"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/request_info_time"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/text_request_amount_part"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/request_number_of_events_held"
-            android:textColor="@color/orange"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/text_request_number_of_events_held"
-            app:layout_constraintStart_toEndOf="@+id/text_request_number_of_events_held"
-            app:layout_constraintTop_toTopOf="@+id/text_request_number_of_events_held" />
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_below="@id/request_info_time"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/request_info_start_margin"
-            android:layout_marginTop="20dp"
-            android:background="@color/line_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/request_info_date"
-            app:layout_constraintTop_toBottomOf="@+id/text_request_number_of_events_held" />
-
-        <TextView
-            android:id="@+id/about_request_text_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/about_request"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/special_black_about_request"
-            android:textSize="16sp"
-            android:fontFamily="@font/roboto_medium"
-            app:layout_constraintStart_toStartOf="@+id/request_info_date"
-            app:layout_constraintTop_toBottomOf="@id/view3" />
-
-        <TextView
-            android:id="@+id/request_info_about"
+        app:layout_constraintTop_toBottomOf="@id/request_detail">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/empty"
-            android:layout_marginStart="@dimen/request_info_start_margin"
-            android:layout_marginEnd="@dimen/request_info_start_margin"
+            android:background="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:gravity="fill"
-            android:textSize="12sp"
-            android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/special_grey"
-            app:layout_constraintTop_toBottomOf="@id/about_request_text_2"/>
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/grey_border">
+                
+                <ImageView
+                    android:id="@+id/request_background_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp" />
 
-    </android.support.constraint.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/request_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/request_background_image"
+                    android:layout_marginTop="-50dp"/>
 
+                <TextView
+                    android:id="@+id/restaurant_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/restaurant_name"
+                    android:textSize="22sp"
+                    android:textColor="@color/orange"
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/request_image"
+                    android:layout_marginTop="25dp"/>
+
+                <TextView
+                    android:id="@+id/restaurant_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/restaurant_email"
+                    android:textSize="15sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/restaurant_name"
+                    android:textColor="@color/initiator_email_grey"
+                    android:layout_marginBottom="20dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/grey_border"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp">
+
+                <TextView
+                    android:id="@+id/text_possible_event_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/possible_event_days"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/special_black_initiators_edits"/>
+
+                <include
+                    android:layout_below="@id/text_possible_event_days"
+                    layout="@layout/include_time_table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="15sp"
+                android:textColor="@color/initiator_email_grey"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="200dp"
+                android:background="@drawable/grey_border">
+
+                <TextView
+                    android:id="@+id/text_donating_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/donating_back"
+                    android:textColor="@color/special_black_initiators_edits"
+                    android:textSize="20sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"/>
+                <GridLayout
+                    android:id="@+id/grid_donating_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:layout_below="@id/text_donating_back"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_centerHorizontal="true">
+                </GridLayout>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

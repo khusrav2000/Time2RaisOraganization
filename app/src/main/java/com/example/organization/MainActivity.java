@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.organization.data.model.Events;
 import com.example.organization.data.model.Request;
+import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.events.EventsTabbedFragment;
 import com.example.organization.events.ListEventsFragment;
 import com.example.organization.events.ListMyEventsFragment;
@@ -104,10 +105,6 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 
     @Override
     public void onListFragmentInteraction(Events item) {
@@ -115,14 +112,18 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onListFragmentInteraction(Request item) {
+    public void onListFragmentInteraction(RestaurantInformation item) {
         startRequestInfoActivity(item);
     }
 
-    public void startRequestInfoActivity(Request requests){
-        Intent intent = new Intent(this, RequestsDetail.class);
-        intent.putExtra("request", requests.getRequestId());
+    public void startRequestInfoActivity(RestaurantInformation requests){
+        Intent intent = new Intent(this, RequestDetail.class);
+        intent.putExtra("request", requests.getRestaurantId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onListFragmentInteraction(Request item) {
 
     }
 }

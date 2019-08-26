@@ -83,7 +83,7 @@ public class ListMyRequestsFragment extends Fragment  {
             loadMyRequest();
             //recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
-        Button createRequest = view.findViewById(R.id.create_request);
+        Button createRequest = (Button) view.findViewById(R.id.create_request);
         createRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

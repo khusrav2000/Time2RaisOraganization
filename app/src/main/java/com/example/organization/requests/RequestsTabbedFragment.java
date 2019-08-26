@@ -41,10 +41,10 @@ public class RequestsTabbedFragment extends Fragment {
         View view = inflater.inflate(R.layout.requests_tabbed_fragment, container, false);
         RequestsSectionsPagerAdapter sectionsPagerAdapter = new RequestsSectionsPagerAdapter(getActivity(), getChildFragmentManager());
 
-        ViewPager viewPager = view.findViewById(R.id.requests_view_pager);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.requests_view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
 
-        TabLayout tabs = view.findViewById(R.id.requests_tabs);
+        TabLayout tabs = (TabLayout) view.findViewById(R.id.requests_tabs);
 
         tabs.setupWithViewPager(viewPager);
 

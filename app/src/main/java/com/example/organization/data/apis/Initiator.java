@@ -4,6 +4,7 @@ import com.example.organization.data.model.Events;
 import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.LogInInitiator;
 import com.example.organization.data.model.Request;
+import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.data.model.SendInitiatorInformation;
 import com.example.organization.data.model.UniquensessEmail;
 
@@ -43,8 +44,9 @@ public interface Initiator {
     Call< List<Events> > getMyEvents(@Header("token") String token, @Path("limit") int limit);
 
     // Получения списка request-ов с лимитом в limit элементов.
+    // Requests являеться моделю данных о ресторане.
     @GET("api/init/requests/{limit}")
-    Call< List<Request> > getRequests(@Header("token") String token, @Path("limit") int limit);
+    Call< List<RestaurantInformation> > getRequests(@Header("token") String token, @Path("limit") int limit);
 
     // Получения списка request-ов организатора с лимитов в limit элементов.
     @GET("api/init/request/orgrequests/{limit}")
@@ -68,5 +70,7 @@ public interface Initiator {
     Call<InitiatorInformation> setProfileInformation(@Header("token") String token,
                                                      @Body SendInitiatorInformation sendInitiatorInformation);
 
-
+    // Полунения данные о ресторане по ID.
+    @GET("api/init/res/{resId}")
+    Call<RestaurantInformation> getRestaurantById(@Header("token") String token, @Path("resId") int resId);
 }

@@ -1,15 +1,17 @@
-package com.example.organization.data.model;
+package com.example.organization.data.model.Restaurant;
 
+import com.example.organization.data.model.Photo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class InitiatorInformation {
+import javax.sql.StatementEvent;
 
-    @SerializedName("InitID")
+public class RestaurantInformation {
+    @SerializedName("OrgID")
     @Expose
-    private int initId;
+    private int restaurantId;
 
     @SerializedName("Email")
     @Expose
@@ -49,7 +51,15 @@ public class InitiatorInformation {
 
     @SerializedName("Photos")
     @Expose
-    private List<Photo> photos;
+    private List<Photo> photos; // Фотографии ресторана.
+
+    @SerializedName("TimeTable")
+    @Expose
+    private TimeTable timeTable;
+
+    @SerializedName("Cashback")
+    @Expose
+    private List<CashBackItems> cashBackItems;
 
     @SerializedName("IconUrl")
     @Expose
@@ -59,10 +69,10 @@ public class InitiatorInformation {
     @Expose
     private String backgroundImageUrl;
 
-    public InitiatorInformation(int initId, String email, String adress, double lan, double lat, double stars, String phone, String name, int zipCode, String about, List<Photo> photos, String iconUrl, String backgroundImageUrl) {
-        this.initId = initId;
+    public RestaurantInformation(int restaurantId, String email, String address, double lan, double lat, double stars, String phone, String name, int zipCode, String about, List<Photo> photos, TimeTable timeTable, List<CashBackItems> cashBackItems, String iconUrl, String backgroundImageUrl) {
+        this.restaurantId = restaurantId;
         this.email = email;
-        this.address = adress;
+        this.address = address;
         this.lan = lan;
         this.lat = lat;
         this.stars = stars;
@@ -71,16 +81,18 @@ public class InitiatorInformation {
         this.zipCode = zipCode;
         this.about = about;
         this.photos = photos;
+        this.timeTable = timeTable;
+        this.cashBackItems = cashBackItems;
         this.iconUrl = iconUrl;
         this.backgroundImageUrl = backgroundImageUrl;
     }
 
-    public int getInitId() {
-        return initId;
+    public int getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setInitId(int initId) {
-        this.initId = initId;
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public String getEmail() {
@@ -155,6 +167,30 @@ public class InitiatorInformation {
         this.about = about;
     }
 
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
+    public TimeTable getTimeTable() {
+        return timeTable;
+    }
+
+    public void setTimeTable(TimeTable timeTable) {
+        this.timeTable = timeTable;
+    }
+
+    public List<CashBackItems> getCashBackItems() {
+        return cashBackItems;
+    }
+
+    public void setCashBackItems(List<CashBackItems> cashBackItems) {
+        this.cashBackItems = cashBackItems;
+    }
+
     public String getIconUrl() {
         return iconUrl;
     }
@@ -173,27 +209,22 @@ public class InitiatorInformation {
 
     @Override
     public String toString() {
-        return "InitiatorInformation{" +
-                "initId=" + initId +
+        return "RestaurantInformation{" +
+                "restaurantId=" + restaurantId +
                 ", email='" + email + '\'' +
-                ", adress='" + address + '\'' +
+                ", address='" + address + '\'' +
                 ", lan=" + lan +
                 ", lat=" + lat +
                 ", stars=" + stars +
-                ", phone='" + phone + '\'' +
-                ", name='" + name + '\'' +
+                ", phone=" + phone +
+                ", name=" + name +
                 ", zipCode=" + zipCode +
                 ", about='" + about + '\'' +
+                ", photos=" + photos +
+                ", timeTable=" + timeTable +
+                ", cashBackItems=" + cashBackItems +
                 ", iconUrl='" + iconUrl + '\'' +
                 ", backgroundImageUrl='" + backgroundImageUrl + '\'' +
                 '}';
-    }
-
-    public List<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
     }
 }

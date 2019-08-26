@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.organization.data.model.Request;
+import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.requests.ListRequestsFragment.OnListFragmentInteractionListener;
 import com.example.organization.R;
 import com.example.organization.data.model.Photo;
@@ -28,7 +29,7 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
 
     // Список event-ов, которые мы получаем из сервера.
     // Events - Это модель для помещения в него получаемых данных из сервера.
-    private final List<Request> mValues;
+    private final List<RestaurantInformation> mValues;
 
     private final ListRequestsFragment.OnListFragmentInteractionListener mListener;
 
@@ -38,7 +39,7 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
 
     View getContexts;
 
-    public MyListRequestsRecyclerViewAdapter(List<Request> items, OnListFragmentInteractionListener listener) {
+    public MyListRequestsRecyclerViewAdapter(List<RestaurantInformation> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -58,7 +59,7 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
         holder.mItem = mValues.get(position);
 
         holder.nameRequest.setText(mValues.get(position).getName());
-        holder.requestStartEndTime.setText(mValues.get(position).getStart() + mValues.get(position).getEnd());
+        /*holder.requestStartEndTime.setText(mValues.get(position).getStart() + mValues.get(position).getEnd());
 
         // Устанавливаем дату проведения event-а в нужном формате.
         String format = "MMM dd yyyy";
@@ -139,18 +140,18 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
         public final TextView requestDate;
         public final Button requestDetail;
 
-        public Request mItem;
+        public RestaurantInformation mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
 
             // Поля event-а.
-            requestMainImage = view.findViewById(R.id.request_main_image);
-            nameRequest = view.findViewById(R.id.request_name);
-            requestStartEndTime = view.findViewById(R.id.request_start_end_time);
-            requestDate = view.findViewById(R.id.request_date);
-            requestDetail = view.findViewById(R.id.request_detail_button);
+            requestMainImage = (ImageView) view.findViewById(R.id.request_main_image);
+            nameRequest = (TextView) view.findViewById(R.id.request_name);
+            requestStartEndTime = (TextView) view.findViewById(R.id.request_start_end_time);
+            requestDate = (TextView) view.findViewById(R.id.request_date);
+            requestDetail = (Button) view.findViewById(R.id.request_detail_button);
 
         }
 

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/third_inf"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:columnCount="3"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="33"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:gravity="center"
+            android:text="@string/working_start"
+            android:textColor="@color/orange"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="33"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:gravity="center"
+            android:text="@string/working_end"
+            android:textColor="@color/orange"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="34"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:gravity="center_vertical"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="34"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_gravity="center_vertical"
+            android:text="@string/working_monday"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="34"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_gravity="center_vertical"
+            android:text="@string/working_tuesday"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="34"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_gravity="center_vertical"
+            android:text="@string/working_wednesday"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="34"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:layout_gravity="center_vertical"
+            android:text="@string/working_thursday"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="34"
+            android:layout_column="0"
+            android:layout_row="5"
+            android:layout_gravity="center_vertical"
+            android:text="@string/working_friday"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="34"
+            android:layout_column="0"
+            android:layout_row="6"
+            android:layout_gravity="center_vertical"
+            android:text="@string/working_saturday"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="34"
+            android:layout_column="0"
+            android:layout_row="7"
+            android:layout_gravity="center_vertical"
+            android:text="@string/working_sunday"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/working_start_monday"
+            android:layout_width="40dp"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_margin="4dp"
+            android:inputType="time"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+        <TextView
+            android:id="@+id/working_start_tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:textSize="4pt"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_start_wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:textSize="4pt"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_start_thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="1"
+            android:layout_row="4"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_start_friday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="1"
+            android:layout_row="5"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_start_saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="1"
+            android:layout_row="6"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_start_sunday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="1"
+            android:layout_row="7"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_end_monday"
+            android:layout_width="40dp"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:textSize="4pt"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_end_tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_end_wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="2"
+            android:layout_row="3"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border"
+            android:importantForAutofill="no">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_end_thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="2"
+            android:layout_row="4"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_end_friday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_row="5"
+            android:layout_column="2"
+            android:layout_columnWeight="33"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:background="@drawable/working_time_orange_border"
+            android:gravity="center">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_end_saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="2"
+            android:layout_row="6"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/working_end_sunday"
+            android:layout_width="wrap_content"
+            android:layout_height="21.4dp"
+            android:layout_columnWeight="33"
+            android:layout_column="2"
+            android:layout_row="7"
+            android:layout_margin="4dp"
+            android:textSize="4pt"
+            android:gravity="center"
+            android:background="@drawable/working_time_orange_border">
+
+        </TextView>
+    </GridLayout>
+
+</RelativeLayout>

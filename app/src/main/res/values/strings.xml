@@ -101,4 +101,18 @@
     <string name="new_password">New password</string>
     <string name="confirm">Confirm password</string>
     <string name="change">Change</string>
+    <string name="restaurant_name">Name</string>
+    <string name="restaurant_email">Email</string>
+    <string name="possible_event_days">Possible event days *</string>
+    <string name="working_sunday">Sunday</string>
+    <string name="working_saturday">Saturday</string>
+    <string name="working_friday">Friday</string>
+    <string name="working_thursday">Thursday</string>
+    <string name="working_wednesday">Wednesday</string>
+    <string name="working_tuesday">Tuesday</string>
+    <string name="working_monday">Monday</string>
+    <string name="working_start">Start</string>
+    <string name="working_end">End</string>
+    <string name="description">* To create an event, the request must be sent at least two weeks before the event</string>
+    <string name="donating_back">Donating back</string>
 </resources>

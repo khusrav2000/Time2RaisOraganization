@@ -27,7 +27,7 @@ import retrofit2.Retrofit;
 
 public class InitiatorProfile extends AppCompatActivity {
 
-    ImageView backgoundProfileImage;
+    ImageView backgroundProfileImage;
     ImageView profileImage;
     TextView initiatorName;
     TextView initiatorEmail;
@@ -52,7 +52,7 @@ public class InitiatorProfile extends AppCompatActivity {
         setContentView(R.layout.activity_initiator_profile);
 
         // Инициализация данных поля профиля организатора.
-        backgoundProfileImage           = findViewById(R.id.background_profile_image);
+        backgroundProfileImage           = findViewById(R.id.background_profile_image);
         profileImage                    = findViewById(R.id.profile_image);
         initiatorName                   = findViewById(R.id.initiator_name);
         initiatorEmail                  = findViewById(R.id.initiator_email);
@@ -129,7 +129,7 @@ public class InitiatorProfile extends AppCompatActivity {
         picasso.load(storageUrl + initiatorInformation.getBackgroundImageUrl())
                 .fit()// Длина и ширина фотографии будет таким каким задано в XML файле.
                 .centerCrop()// Get center. Берём ценрт фотографии, все что помешается в заданный размер.
-                .into(backgoundProfileImage);
+                .into(backgroundProfileImage);
 
         picasso.load(storageUrl + initiatorInformation.getIconUrl())
                 .into(profileImage);

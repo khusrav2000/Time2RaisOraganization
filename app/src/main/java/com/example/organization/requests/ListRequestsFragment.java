@@ -15,6 +15,7 @@ import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
 import com.example.organization.data.model.Request;
+import com.example.organization.data.model.Restaurant.RestaurantInformation;
 
 import java.util.List;
 
@@ -109,12 +110,11 @@ public class ListRequestsFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Request item);
+        void onListFragmentInteraction(RestaurantInformation item);
     }
 
     private void loadRequests(){
 
-        // Загрузка списка event-ов с сервера.
         Retrofit retrofit = NetworkClient.getRetrofitClient();
         Initiator iOrganization = retrofit.create(Initiator.class);
 
@@ -126,7 +126,8 @@ public class ListRequestsFragment extends Fragment {
             public void onResponse(Call call, Response response) {
 
                 if (response.isSuccessful()) {
-                    List<Request> requests = (List<Request>) response.body();
+
+                    List<RestaurantInformation> requests = (List<RestaurantInformation>) response.body();
                     System.out.println("----------------Request are loaded ---------------------------");
                     setAdapter(requests);
                 }
@@ -139,7 +140,7 @@ public class ListRequestsFragment extends Fragment {
         });
     }
 
-    private void setAdapter(List<Request> requests){
+    private void setAdapter(List<RestaurantInformation> requests){
         recyclerView.setAdapter(new MyListRequestsRecyclerViewAdapter(requests, mListener));
     }
 }
