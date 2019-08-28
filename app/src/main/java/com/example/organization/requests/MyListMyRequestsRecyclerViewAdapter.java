@@ -3,6 +3,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.example.organization.data.model.Photo;
 import com.squareup.picasso.Picasso;
 import com.example.organization.requests.ListMyRequestsFragment.OnListFragmentInteractionListener;
 
+import java.nio.Buffer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -96,6 +98,19 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
                     .into(holder.myRequestMainImage);
         }
 
+        // Отслеживания на нажатия на кнопку detail для request-ов.
+        holder.editMyRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mListener) {
+                    // Notify the active callbacks interface (the activity, if the
+                    // fragment is attached to one) that an item has been selected.
+                    // Информация о request-е идёк в MainClass в метод onListFragmentInteraction через класс ListRequestsFragment.
+                    mListener.onListFragmentInteraction(holder.mItem);
+                }
+            }
+        });
+
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +138,7 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
         public final TextView myNameRequest;
         public final TextView myRequestStartEndTime;
         public final TextView myRequestDate;
+        final Button editMyRequest;
 
         public Request mItem;
 
@@ -135,6 +151,7 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
             myNameRequest = view.findViewById(R.id.my_request_name);
             myRequestStartEndTime = view.findViewById(R.id.my_request_start_end_time);
             myRequestDate = view.findViewById(R.id.my_request_date);
+            editMyRequest = view.findViewById(R.id.my_request_edit_button);
         }
 
         @Override

@@ -13,7 +13,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.organization.data.LoginDataSource;
+import com.example.organization.data.NetworkClient;
+import com.example.organization.data.apis.Initiator;
 import com.example.organization.data.model.Events;
+import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.Request;
 import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.events.EventsTabbedFragment;
@@ -22,6 +26,12 @@ import com.example.organization.events.ListMyEventsFragment;
 import com.example.organization.requests.ListMyRequestsFragment;
 import com.example.organization.requests.ListRequestsFragment;
 import com.example.organization.requests.RequestsTabbedFragment;
+import com.squareup.picasso.Picasso;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements
         ListMyRequestsFragment.OnListFragmentInteractionListener,
@@ -39,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements
     Fragment messagesFragment = new MessagesFragment();
     Fragment eventsTabbedFragment = new EventsTabbedFragment();
 
+    final String storageUrl = "https://drive.google.com/uc?export=download&id=";
+    boolean setProfileImage = false;
+
+    ImageView profileImage;
 
     public Fragment getRequestTabbedFragment(){
         return requestsTabbedFragment;
@@ -50,8 +64,9 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
-        ImageView buttonProfile = findViewById(R.id.icon_profile);
-        buttonProfile.setOnClickListener(new View.OnClickListener() {
+        profileImage = findViewById(R.id.icon_profile);
+
+        profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startProfile();
@@ -63,6 +78,52 @@ public class MainActivity extends AppCompatActivity implements
         transaction.replace(R.id.fragment, eventsTabbedFragment);
         transaction.commit();
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        // Получения данных о пользователе.
+        Retrofit retrofit = NetworkClient.getRetrofitClient();
+        Initiator organization = retrofit.create(Initiator.class);
+        Call call = organization.getProfileById(LoginDataSource.getInitiator().getToken());
+        System.out.println(" WILL WORK -----------------------------------");
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                // TODO: Инициализировать данные о пользователе.
+                if (response.isSuccessful()) {
+                    setProfileImage(((InitiatorInformation) response.body()).getIconUrl());
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+
+            }
+        });
+
+        if (!setProfileImage){
+            setProfileImage = true;
+            Picasso picasso = Picasso.get();
+            picasso.load(R.drawable.no_photo)
+                    .fit()
+                    .centerCrop()
+                    .transform(new CircleTransform())
+                    .into(profileImage);
+        }
+    }
+
+    private void setProfileImage(String url) {
+        System.out.println("Profile iamge SET ________________----------------");
+        if (url != null) {
+            setProfileImage = true;
+            Picasso picasso = Picasso.get();
+
+            picasso.load(storageUrl + url)
+                    .fit()
+                    .placeholder(R.drawable.photo)
+                    .error(R.drawable.no_photo)
+                    .centerCrop()
+                    .transform(new CircleTransform())
+                    .into(profileImage);
+        }
     }
 
     private void startProfile() {
@@ -124,6 +185,12 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onListFragmentInteraction(Request item) {
+        startEditMyRequest(item);
+    }
 
+    private void startEditMyRequest(Request myRequest) {
+        Intent intent = new Intent(this, EditMyRequest.class);
+        intent.putExtra("myRequest", myRequest.getRequestId());
+        startActivity(intent);
     }
 }

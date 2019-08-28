@@ -18,9 +18,11 @@
 
         <ImageView
             android:id="@+id/icon_profile"
-            android:layout_width="?attr/actionBarSize"
-            android:layout_height="?attr/actionBarSize"
-            android:src="@drawable/gerry"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:elevation="5dp"
+            android:src="@drawable/gerry"
+            android:scaleType="centerCrop"/>
         
     </android.support.v7.widget.Toolbar>
 

@@ -136,6 +136,8 @@ public class InitiatorProfile extends AppCompatActivity {
 
         picasso.load(storageUrl + initiatorInformation.getIconUrl())
                 .fit()
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.no_photo)
                 .centerCrop()
                 .transform(new CircleTransform())
                 .into(profileImage);

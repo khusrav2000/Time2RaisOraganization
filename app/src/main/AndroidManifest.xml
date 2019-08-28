@@ -14,7 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".EditMyRequest"></activity>
+        <activity
+            android:name=".EditMyRequest"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
         <activity
             android:name=".InitiatorProfile"
             android:windowSoftInputMode="adjustPan"></activity>
