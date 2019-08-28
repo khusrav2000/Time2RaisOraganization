@@ -20,6 +20,6 @@
     <dimen name="profile_start_end_margins">30dp</dimen>
 
     <dimen name="request_detail_cash_back_height">40dp</dimen>
-    <dimen name="request_detail_cash_back_amount_width">100dp</dimen>
-    <dimen name="request_detail_cash_back_percent_width">160dp</dimen>
+    <dimen name="request_detail_cash_back_amount_width">160dp</dimen>
+    <dimen name="request_detail_cash_back_percent_width">100dp</dimen>
 </resources>

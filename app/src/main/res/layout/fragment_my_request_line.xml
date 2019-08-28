@@ -56,19 +56,19 @@
         android:drawablePadding="5dp"/>
 
     <Button
-        android:id="@+id/my_request_detail_button"
+        android:id="@+id/my_request_edit_button"
         android:layout_width="79.22dp"
         android:layout_height="22dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="@dimen/event_end_margin"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/detail_button_radius"
+        android:background="@drawable/edit_button_radius"
         android:textAllCaps="false"
         android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/orange"
+        android:textColor="@color/special_black_date"
         android:textSize="10sp"
-        android:text="@string/detail"/>
+        android:text="@string/edit"/>
 
     <ImageView
         android:id="@+id/my_request_calendar"

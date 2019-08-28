@@ -1,5 +1,6 @@
 package com.example.organization;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -78,6 +79,7 @@ public class RequestDetail extends AppCompatActivity {
 
         nameRestaurant = findViewById(R.id.restaurant_name);
         restaurantEmail = findViewById(R.id.restaurant_email);
+        aboutRestaurant = findViewById(R.id.about_restaurant);
 
         requestBackgroundImage = findViewById(R.id.request_background_image);
         requestImage = findViewById(R.id.request_image);
@@ -144,12 +146,13 @@ public class RequestDetail extends AppCompatActivity {
         picasso.load(storageUrl + restaurantInformation.getIconUrl())
                 .fit()
                 .centerCrop()
+                .transform(new CircleTransform())
                 .into(requestImage);
 
         nameRestaurant.setText(restaurantInformation.getName());
         restaurantEmail.setText(restaurantInformation.getEmail());
         //phoneRestaurant.setText(restaurantInformation.getPhone());
-        //aboutRestaurant.setText(restaurantInformation.getAbout());
+        aboutRestaurant.setText(restaurantInformation.getAbout());
 
         TimeTable timeTable = restaurantInformation.getTimeTable();
         List<WeekDay> weekdays = timeTable.getWeekDays();
@@ -184,9 +187,9 @@ public class RequestDetail extends AppCompatActivity {
                 TextView donatingBackAmount = new TextView(getBaseContext());
 
                 GridLayout.LayoutParams poss = new GridLayout.LayoutParams();
-                
-                poss.width = R.dimen.request_detail_cash_back_amount_width;
-                poss.height = R.dimen.request_detail_cash_back_height;
+
+                poss.width = getBaseContext().getResources().getDimensionPixelOffset(R.dimen.request_detail_cash_back_amount_width);
+                poss.height = getBaseContext().getResources().getDimensionPixelOffset(R.dimen.request_detail_cash_back_height);
 
                 poss.columnSpec = GridLayout.spec(0);
                 poss.rowSpec = GridLayout.spec(0 + countDonatingBack);
@@ -212,8 +215,8 @@ public class RequestDetail extends AppCompatActivity {
 
                 GridLayout.LayoutParams priceParams = new GridLayout.LayoutParams();
 
-                priceParams.width = R.dimen.request_detail_cash_back_percent_width;
-                priceParams.height = R.dimen.request_detail_cash_back_height;
+                priceParams.width = getBaseContext().getResources().getDimensionPixelOffset(R.dimen.request_detail_cash_back_percent_width);
+                priceParams.height = getBaseContext().getResources().getDimensionPixelOffset(R.dimen.request_detail_cash_back_height);
 
                 priceParams.columnSpec = GridLayout.spec(1);
                 priceParams.rowSpec = GridLayout.spec(0 + countDonatingBack);

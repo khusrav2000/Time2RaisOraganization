@@ -73,12 +73,15 @@ public class InitiatorProfile extends AppCompatActivity {
         Retrofit retrofit = NetworkClient.getRetrofitClient();
         Initiator organization = retrofit.create(Initiator.class);
         Call call = organization.getProfileById(LoginDataSource.getInitiator().getToken());
+        System.out.println(" WILL WORK -----------------------------------");
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 // TODO: Инициализировать данные о пользователе.
-                if (response.isSuccessful())
+                if (response.isSuccessful()) {
+                    System.out.println(" All PROFILE INF DOWNLOAD -------------------");
                     saveInitiatorInformation((InitiatorInformation) response.body());
+                }
             }
 
             @Override
@@ -132,6 +135,9 @@ public class InitiatorProfile extends AppCompatActivity {
                 .into(backgroundProfileImage);
 
         picasso.load(storageUrl + initiatorInformation.getIconUrl())
+                .fit()
+                .centerCrop()
+                .transform(new CircleTransform())
                 .into(profileImage);
 
 

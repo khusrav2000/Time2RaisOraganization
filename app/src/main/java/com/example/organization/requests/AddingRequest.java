@@ -71,8 +71,7 @@ public class AddingRequest extends AppCompatActivity {
         dateRequest             = findViewById(R.id.request_date);
         startTimeRequest        = findViewById(R.id.request_time_start);
         endTimeRequest          = findViewById(R.id.request_time_end);
-        averageSumRequest       = findViewById(R.id.average_sum);
-        numberOfEventsHeld      = findViewById(R.id.number_of_events_held);
+        averageSumRequest       = findViewById(R.id.amount_participants);
         aboutRequest            = findViewById(R.id.about_request);
 
 

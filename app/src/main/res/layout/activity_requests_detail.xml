@@ -45,7 +45,7 @@
                     android:layout_height="100dp"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/request_background_image"
-                    android:layout_marginTop="-50dp"/>
+                    android:layout_marginTop="-60dp"/>
 
                 <TextView
                     android:id="@+id/restaurant_name"
@@ -95,7 +95,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
-
             </RelativeLayout>
             <TextView
                 android:layout_width="match_parent"
@@ -103,15 +102,23 @@
                 android:text="@string/description"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginBottom="5dp"
                 android:textSize="15sp"
                 android:textColor="@color/initiator_email_grey"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/line_color"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="5dp"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginBottom="200dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/grey_border">
 
                 <TextView
@@ -135,7 +142,114 @@
                 </GridLayout>
 
             </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/line_color"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_restaurant"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:textSize="16sp"
+                android:textColor="@color/special_black_initiators_edits"
+                android:fontFamily="@font/roboto_medium"
+                />
+            <TextView
+                android:id="@+id/about_restaurant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/empty"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/special_grey"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/grey_border"
+                android:layout_marginBottom="200dp">
+
+                <TextView
+                    android:id="@+id/text_contact_us"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_us"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/special_black_initiators_edits"/>
+                
+                <LinearLayout
+                    android:id="@+id/send_message_layout"
+                    android:layout_width="250dp"
+                    android:layout_height="27dp"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/text_contact_us">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_send_message"
+                        android:layout_gravity="center_vertical"/>
+
+                    <Button
+                        android:id="@+id/send_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/send_message"
+                        android:textAllCaps="false"
+                        android:textColor="@color/orange"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:background="@drawable/working_time_orange_border"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="250dp"
+                    android:layout_height="27dp"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_below="@id/send_message_layout">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_call"
+                        android:layout_gravity="center_vertical"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/call"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:background="@drawable/button_change_green"/>
+
+                </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>

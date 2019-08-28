@@ -23,7 +23,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_below="@id/background_profile_image"
-            android:layout_marginTop="-50dp"
+            android:layout_marginTop="-60dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/gerry" />
 

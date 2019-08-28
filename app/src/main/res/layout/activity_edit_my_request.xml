@@ -9,7 +9,7 @@
     tools:context=".requests.AddingRequest">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/adding_requests_toolbar"
+        android:id="@+id/edit_requests_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/toolbars_background"
@@ -18,24 +18,24 @@
     </android.support.v7.widget.Toolbar>
 
     <TextView
-        android:id="@+id/top_adding_request"
+        android:id="@+id/top_edit_request"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_adding_request_height"
         android:background="@drawable/toolbars_background"
         android:gravity="center"
         android:layout_marginTop="0.5dp"
         android:lineSpacingExtra="10sp"
-        android:text="@string/adding_request"
+        android:text="@string/edit_request"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adding_requests_toolbar"/>
+        app:layout_constraintTop_toBottomOf="@id/edit_requests_toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/top_adding_request">
+        app:layout_constraintTop_toBottomOf="@id/top_edit_request">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -49,11 +49,11 @@
                 android:fontFamily="@font/roboto_regular"
                 android:textSize="@dimen/request_date_information"
                 android:layout_marginBottom="7dp"
-                app:layout_constraintBottom_toTopOf="@id/name_request"
-                app:layout_constraintStart_toStartOf="@id/name_request"/>
+                app:layout_constraintBottom_toTopOf="@id/edit_name_request"
+                app:layout_constraintStart_toStartOf="@id/edit_name_request"/>
 
             <EditText
-                android:id="@+id/name_request"
+                android:id="@+id/edit_name_request"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:layout_marginStart="@dimen/margin_name_about_request"
@@ -75,8 +75,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/top_height_request"
                 android:src="@drawable/icon_date"
-                app:layout_constraintStart_toStartOf="@+id/name_request"
-                app:layout_constraintTop_toBottomOf="@+id/name_request" />
+                app:layout_constraintStart_toStartOf="@+id/edit_name_request"
+                app:layout_constraintTop_toBottomOf="@+id/edit_name_request" />
 
             <TextView
                 android:id="@+id/textView"
@@ -94,7 +94,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
 
             <TextView
-                android:id="@+id/request_date"
+                android:id="@+id/edit_request_date"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="30dp"
@@ -103,11 +103,11 @@
 
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintEnd_toStartOf="@+id/request_time_start"
+                app:layout_constraintEnd_toStartOf="@+id/edit_request_time_start"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
 
             <TextView
-                android:id="@+id/request_time_start"
+                android:id="@+id/edit_request_time_start"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
@@ -117,12 +117,12 @@
                 android:gravity="center"
                 android:hint="@string/start"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintEnd_toStartOf="@+id/request_time_end"
+                app:layout_constraintEnd_toStartOf="@+id/edit_request_time_end"
                 app:layout_constraintTop_toTopOf="@+id/imageView"
                 android:layout_marginEnd="10dp"/>
 
             <TextView
-                android:id="@+id/request_time_end"
+                android:id="@+id/edit_request_time_end"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
@@ -131,7 +131,7 @@
                 android:gravity="center"
                 android:hint="@string/end"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintEnd_toEndOf="@+id/name_request"
+                app:layout_constraintEnd_toEndOf="@+id/edit_name_request"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
 
 
@@ -160,14 +160,14 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
             <EditText
-                android:id="@+id/amount_participants"
+                android:id="@+id/edit_amount_participants"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
                 android:inputType="numberDecimal"
                 android:gravity="center"
                 android:background="@drawable/orange_border_radius"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                app:layout_constraintEnd_toEndOf="@+id/name_request"
+                app:layout_constraintEnd_toEndOf="@+id/edit_name_request"
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
 
@@ -191,7 +191,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintRight_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/amount_participants"/>
+                app:layout_constraintTop_toBottomOf="@id/edit_amount_participants"/>
 
             <View
                 android:layout_width="100dp"
@@ -202,7 +202,7 @@
                 app:layout_constraintTop_toTopOf="@+id/text_about_request" />
 
             <EditText
-                android:id="@+id/about_request"
+                android:id="@+id/edit_about_request"
                 android:layout_width="match_parent"
                 android:layout_height="129dp"
                 android:layout_marginTop="20dp"
@@ -213,29 +213,28 @@
                 android:textColor="@color/special_grey"
                 android:fontFamily="@font/roboto_regular"
                 android:background="@drawable/grey_border_about_request"
-                app:layout_constraintEnd_toEndOf="@+id/name_request"
-                app:layout_constraintStart_toStartOf="@+id/name_request"
+                app:layout_constraintEnd_toEndOf="@+id/edit_name_request"
+                app:layout_constraintStart_toStartOf="@+id/edit_name_request"
                 app:layout_constraintTop_toBottomOf="@id/text_about_request"/>
 
             <Button
-                android:id="@+id/adding_request"
+                android:id="@+id/edit_request"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_marginStart="@dimen/margin_name_about_request"
                 android:layout_marginEnd="@dimen/margin_name_about_request"
                 android:background="@drawable/orange_border_radius"
-                android:drawableStart="@drawable/icon_plus"
                 android:fontFamily="@font/roboto_regular"
 
                 android:gravity="center"
-                android:text="@string/add_request"
+                android:text="@string/save"
                 android:textAllCaps="false"
                 android:textColor="@color/orange"
                 android:textSize="13sp"
                 android:layout_marginTop="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/name_request"
-                app:layout_constraintStart_toStartOf="@+id/name_request"
-                app:layout_constraintTop_toBottomOf="@id/about_request"/>
+                app:layout_constraintEnd_toEndOf="@+id/edit_name_request"
+                app:layout_constraintStart_toStartOf="@+id/edit_name_request"
+                app:layout_constraintTop_toBottomOf="@id/edit_about_request"/>
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
