@@ -15,6 +15,15 @@
         android:background="@drawable/toolbars_background"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16sp"
+            android:layout_gravity="center"/>
+
     </android.support.v7.widget.Toolbar>
 
     <TextView
@@ -217,7 +226,7 @@
                 app:layout_constraintStart_toStartOf="@+id/name_request"
                 app:layout_constraintTop_toBottomOf="@id/text_about_request"/>
 
-            <Button
+            <!--Button
                 android:id="@+id/adding_request"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
@@ -235,7 +244,39 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/name_request"
                 app:layout_constraintStart_toStartOf="@+id/name_request"
-                app:layout_constraintTop_toBottomOf="@id/about_request"/>
+                app:layout_constraintTop_toBottomOf="@id/about_request"/-->
+
+            <LinearLayout
+                android:id="@+id/adding_request"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="@dimen/create_request_margin"
+                android:layout_marginEnd="@dimen/create_request_margin"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/orange_border"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="@+id/name_request"
+                app:layout_constraintStart_toStartOf="@+id/name_request"
+                app:layout_constraintTop_toBottomOf="@id/about_request">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_plus"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/orange"
+                    android:text="@string/add_request" />
+            </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

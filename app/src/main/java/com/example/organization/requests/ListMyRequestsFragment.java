@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.example.organization.R;
 import com.example.organization.data.LoginDataSource;
@@ -83,7 +84,7 @@ public class ListMyRequestsFragment extends Fragment  {
             loadMyRequest();
             //recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
-        Button createRequest = (Button) view.findViewById(R.id.create_request);
+        LinearLayout createRequest = (LinearLayout) view.findViewById(R.id.create_request);
         createRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

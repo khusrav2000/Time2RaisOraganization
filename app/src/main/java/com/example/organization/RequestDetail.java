@@ -76,6 +76,8 @@ public class RequestDetail extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("");
+        actionBar.setHomeAsUpIndicator(R.drawable.back_button);
 
         nameRestaurant = findViewById(R.id.restaurant_name);
         restaurantEmail = findViewById(R.id.restaurant_email);
@@ -202,11 +204,17 @@ public class RequestDetail extends AppCompatActivity {
                 donatingBackAmount.setBackgroundResource(R.drawable.working_time_orange_border);
                 donatingBackAmount.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_cash_back,
                         0, 0, 0);
+
                 donatingBackAmount.setCompoundDrawablePadding((int) (5));
                 donatingBackAmount.setText(String.valueOf(donatingBack.get(i).getAmount()));
                 donatingBackAmount.setGravity(Gravity.CENTER_VERTICAL);
-                donatingBackAmount.setPadding(5,0,5,0);
-                donatingBackAmount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                donatingBackAmount.setPadding(
+                        getBaseContext().getResources().getDimensionPixelOffset(R.dimen.donating_back_text_padding)
+                        ,0,
+                        getBaseContext().getResources().getDimensionPixelOffset(R.dimen.donating_back_text_padding)
+                        ,0);
+
+                donatingBackAmount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
 
                 gridLayout.addView(donatingBackAmount);
 
@@ -229,8 +237,12 @@ public class RequestDetail extends AppCompatActivity {
                 donatingBackPrice.setBackgroundResource(R.drawable.working_time_orange_border);
                 donatingBackPrice.setText(String.valueOf(donatingBack.get(i).getPercent()) + "%");
                 donatingBackPrice.setGravity(Gravity.CENTER_VERTICAL);
-                donatingBackPrice.setPadding(5,0,5,0);
-                donatingBackPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                donatingBackPrice.setPadding(
+                        getBaseContext().getResources().getDimensionPixelOffset(R.dimen.donating_back_text_padding)
+                        ,0
+                        , getBaseContext().getResources().getDimensionPixelOffset(R.dimen.donating_back_text_padding)
+                        ,0);
+                donatingBackPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
 
                 gridLayout.addView(donatingBackPrice);
                 countDonatingBack++;

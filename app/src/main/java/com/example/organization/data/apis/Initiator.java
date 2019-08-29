@@ -3,6 +3,8 @@ package com.example.organization.data.apis;
 import com.example.organization.data.model.Events;
 import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.LogInInitiator;
+import com.example.organization.data.model.Messages;
+import com.example.organization.data.model.Photo;
 import com.example.organization.data.model.Request;
 import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.data.model.SendInitiatorInformation;
@@ -10,13 +12,16 @@ import com.example.organization.data.model.UniquensessEmail;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface Initiator {
@@ -73,4 +78,16 @@ public interface Initiator {
     // Полунения данные о ресторане по ID.
     @GET("api/init/res/{resId}")
     Call<RestaurantInformation> getRestaurantById(@Header("token") String token, @Path("resId") int resId);
+
+    @Multipart
+    @POST("/api/init/profil/backgroundimage")
+    Call<Messages> addProfileCover(@Header("token") String token, @Part MultipartBody.Part file);
+
+    @Multipart
+    @POST("/api/init/profil/icon")
+    Call<Messages> addProfileIcon(@Header("token") String token, @Part MultipartBody.Part file);
+
+    @Multipart
+    @POST("/api/init/photos/add")
+    Call<List<Photo>> addGalleryPhotos(@Header("token") String token, @Part List<MultipartBody.Part> file);
 }

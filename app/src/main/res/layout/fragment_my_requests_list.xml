@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <Button
+    <!--Button
         android:id="@+id/create_request"
         android:layout_width="match_parent"
         android:layout_height="36dp"
@@ -18,7 +18,37 @@
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"
         android:drawableStart="@drawable/icon_plus"
-        android:text="@string/create_request"/>
+        android:gravity="left|center_vertical"
+        android:paddingStart="100dp"
+        android:drawablePadding="5dp"
+        android:text="@string/create_request"/-->
+    <LinearLayout
+        android:id="@+id/create_request"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/create_request_margin"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/orange_border"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_plus"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/orange"
+            android:text="@string/create_request" />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_requests_list"
