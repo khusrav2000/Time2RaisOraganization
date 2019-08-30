@@ -18,27 +18,28 @@
         <activity
             android:name=".EditMyRequest"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
 
         </activity>
         <activity
             android:name=".InitiatorProfile"
             android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".RequestDetail"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/BackButtonColorToolbar"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".CreateInitiator"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".requests.AddingRequest"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"

@@ -54,12 +54,26 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
         return new ViewHolder(view);
     }
 
+    public String getCorrectTime(String date){
+        String format = "HH:mm aa";
+        SimpleDateFormat format1= new SimpleDateFormat(format);
+        Date date1 = null;
+        try {
+            date1 =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(date);
+        } catch (ParseException e) {
+            //e.printStackTrace();
+        }
+        return format1.format(date1);
+    }
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
         holder.myNameRequest.setText(mValues.get(position).getName());
-        holder.myRequestStartEndTime.setText(mValues.get(position).getStart() + mValues.get(position).getEnd());
+        holder.myRequestStartEndTime.setText(
+                getCorrectTime(mValues.get(position).getStart()) + " - " +
+                        getCorrectTime(mValues.get(position).getEnd()));
 
 
         String format = "MMM dd yyyy";

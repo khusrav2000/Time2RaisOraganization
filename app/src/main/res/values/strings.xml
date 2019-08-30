@@ -124,4 +124,13 @@
     <string name="edit_request">Edit request</string>
     <string name="add_cover">add cover</string>
     <string name="request">Request</string>
+    <string name="your_organization_name">Your organization name</string>
+    <string name="organization_email_1">Organization email</string>
+    <string name="your_organization_email">Your organization email</string>
+    <string name="your_organization_phone">Your organization phone</string>
+    <string name="organization_phone_1">Organization phone</string>
+    <string name="organization_zip_code_1">Organization zip code</string>
+    <string name="your_organization_zip_code">Your organization zip code</string>
+    <string name="agree_with_terms_error">Please agree with terms</string>
+    <string name="agree_with_terms">I agree with terms.</string>
 </resources>

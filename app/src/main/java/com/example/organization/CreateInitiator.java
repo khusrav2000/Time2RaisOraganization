@@ -26,6 +26,7 @@ public class CreateInitiator extends AppCompatActivity {
     Button initiatorRegister;
     EditText initiatorName;
     EditText initiatorEmail;
+    EditText initiatorZipCode;
     EditText initiatorPhone;
     EditText initiatorPassword;
     EditText initiatorRepeatPassword;
@@ -36,6 +37,8 @@ public class CreateInitiator extends AppCompatActivity {
     String name;
     String email;
     String phone;
+    int zipCode;
+    boolean agree;
     String password;
     String repeatPassword;
 
@@ -53,6 +56,7 @@ public class CreateInitiator extends AppCompatActivity {
         initiatorName               = findViewById(R.id.initiator_name);
         initiatorEmail              = findViewById(R.id.initiator_email);
         initiatorPhone              = findViewById(R.id.initiator_phone);
+        initiatorZipCode            = findViewById(R.id.initiator_zip_code);
         initiatorPassword           = findViewById(R.id.initiator_password);
         initiatorRepeatPassword     = findViewById(R.id.initiator_repeat_password);
         agreeWithTerms              = findViewById(R.id.agree_with_terms);
@@ -72,8 +76,10 @@ public class CreateInitiator extends AppCompatActivity {
                 name = initiatorName.getText().toString().trim();
                 email = initiatorEmail.getText().toString().trim();
                 phone = initiatorPhone.getText().toString().trim();
+                zipCode = Integer.parseInt(initiatorZipCode.getText().toString());
                 password = initiatorPassword.getText().toString().trim();
                 repeatPassword = initiatorRepeatPassword.getText().toString().trim();
+                agree = agreeWithTerms.isChecked();
 
                 if (validateData()){
 
@@ -82,7 +88,7 @@ public class CreateInitiator extends AppCompatActivity {
 
                     SendInitiatorInformation sendInitiatorInformation = new SendInitiatorInformation(
                             0, email, password, "", 0.0, 0.0, 0.0,
-                            phone, name, 0, "", "", "", ""
+                            phone, name, zipCode, "", "", "", ""
                     );
 
                     Retrofit retrofit = NetworkClient.getRetrofitClient();
@@ -180,7 +186,7 @@ public class CreateInitiator extends AppCompatActivity {
             initiatorPassword.requestFocus();
             return false;
         }
-        else if (password.length() < 7){
+        else if (password.length() < 6){
             initiatorPassword.setError(getString(R.string.password_error_count));
             initiatorPassword.requestFocus();
             return false;
@@ -199,6 +205,11 @@ public class CreateInitiator extends AppCompatActivity {
             return false;
         }
 
+        if (!agree){
+            agreeWithTerms.setError(getString(R.string.agree_with_terms_error));
+            agreeWithTerms.requestFocus();
+            return false;
+        }
 
 
         return true;
