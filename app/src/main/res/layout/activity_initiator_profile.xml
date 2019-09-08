@@ -522,13 +522,33 @@
                 android:layout_below="@id/initiator_confirm_password"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
+
                 android:background="@drawable/button_change_green"
                 android:gravity="center"
                 android:text="@string/change"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
+            <View
+                android:id="@+id/view8"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/button_change_password"
+                android:layout_marginTop="@dimen/profile_vertical_top_margin"
+                android:background="@color/line_color" />
+
+            <Button
+                android:id="@+id/log_out"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/vertical_top_margin"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:layout_marginBottom="80dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/logout"
+                android:layout_below="@id/view8"
+                android:background="@drawable/button_save_orange"/>
 
         </RelativeLayout>
     </ScrollView>

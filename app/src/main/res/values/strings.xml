@@ -133,4 +133,15 @@
     <string name="your_organization_zip_code">Your organization zip code</string>
     <string name="agree_with_terms_error">Please agree with terms</string>
     <string name="agree_with_terms">I agree with terms.</string>
+    <string name="organization_address_1">Organization address</string>
+    <string name="example_your_organization_name">Example Washingtone university of Virginia</string>
+    <string name="example_your_organization_email">Example info@wuv.edu</string>
+    <string name="example_your_organization_phone">Example: +1 703 335 5904</string>
+    <string name="example_your_organization_zip_code">Example 22003</string>
+    <string name="example_your_organization_address">Example 4300 evergreen Lane Annandale, VA</string>
+    <string name="logout">logout</string>
+    <string name="past_message">past message</string>
+    <string name="last_message">last message</string>
+    <string name="time">time</string>
+    <string name="message">Message...</string>
 </resources>

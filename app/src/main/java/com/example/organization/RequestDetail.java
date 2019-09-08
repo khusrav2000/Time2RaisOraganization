@@ -132,6 +132,7 @@ public class RequestDetail extends AppCompatActivity {
     // Заполнения полей request-а (Ресторана).
     private void fillFields(){
         Picasso picasso = Picasso.get();
+        System.out.println("-------------------" + restaurantInformation.toString());
         if (restaurantInformation.getBackgroundImageUrl() != null) {
             picasso.load(storageUrl + restaurantInformation.getBackgroundImageUrl())
                     .fit()// Длина и ширина фотографии будет таким каким задано в XML файле.

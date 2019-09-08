@@ -30,6 +30,7 @@ import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.Messages;
 import com.example.organization.data.model.Photo;
 import com.example.organization.data.model.SendInitiatorInformation;
+import com.example.organization.ui.login.LoginActivity;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -71,6 +72,8 @@ public class InitiatorProfile extends AppCompatActivity implements View.OnClickL
     Uri add_cover_uri              = null;
     Uri add_icon_uri               = null;
     String imageEncoded;
+
+    Button logOut;
 
     List<String> imagesEncodedList;
     List<Uri>  galleryUri;
@@ -125,6 +128,15 @@ public class InitiatorProfile extends AppCompatActivity implements View.OnClickL
         addCover                        = findViewById(R.id.add_cover);
         addProfileImage                 = findViewById(R.id.add_profile_image);
 
+        logOut                          = findViewById(R.id.log_out);
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLogin();
+            }
+        });
+
         addCover.setOnClickListener(this);
         addProfileImage.setOnClickListener(this);
         addPhotoInitiator.setOnClickListener(this);
@@ -156,6 +168,12 @@ public class InitiatorProfile extends AppCompatActivity implements View.OnClickL
                 setInitiatorInformation();
             }
         });
+    }
+
+    private void startLogin() {
+        LoginDataSource.logout();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override

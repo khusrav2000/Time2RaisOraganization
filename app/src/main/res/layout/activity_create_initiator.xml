@@ -43,7 +43,7 @@
                 android:layout_marginEnd="@dimen/margin_initiators_edits"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/orange_border"
-                android:hint="@string/your_organization_name"
+                android:hint="@string/example_your_organization_name"
                 android:gravity="center_vertical"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"/>
@@ -66,7 +66,7 @@
                 android:layout_marginEnd="@dimen/margin_initiators_edits"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/orange_border"
-                android:hint="@string/your_organization_email"
+                android:hint="@string/example_your_organization_email"
                 android:gravity="center_vertical"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
@@ -90,11 +90,37 @@
                 android:layout_marginEnd="@dimen/margin_initiators_edits"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/orange_border"
-                android:hint="@string/your_organization_phone"
+                android:hint="@string/example_your_organization_phone"
                 android:gravity="center_vertical"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:inputType="phone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginTop="20dp"
+                android:text="@string/organization_address_1"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/special_black_initiators_edits"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/initiator_address"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginStart="@dimen/margin_initiators_edits"
+                android:layout_marginEnd="@dimen/margin_initiators_edits"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/orange_border"
+                android:hint="@string/example_your_organization_address"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:inputType="text"
+                android:maxLines="1"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -114,7 +140,7 @@
                 android:layout_marginEnd="@dimen/margin_initiators_edits"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/orange_border"
-                android:hint="@string/your_organization_zip_code"
+                android:hint="@string/example_your_organization_zip_code"
                 android:gravity="center_vertical"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
@@ -143,7 +169,8 @@
                 android:gravity="center_vertical"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:maxLines="1"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -167,7 +194,8 @@
                 android:gravity="center_vertical"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:maxLines="1"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"

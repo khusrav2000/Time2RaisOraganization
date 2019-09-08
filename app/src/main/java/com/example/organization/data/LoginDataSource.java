@@ -52,7 +52,7 @@ public class LoginDataSource {
         return initiator;
     }
 
-    public void logout() {
+    public static void logout() {
         initiator = null;
     }
 }

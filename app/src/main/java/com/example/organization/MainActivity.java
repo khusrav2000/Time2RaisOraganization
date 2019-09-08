@@ -18,6 +18,7 @@ import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
 import com.example.organization.data.model.Events;
 import com.example.organization.data.model.InitiatorInformation;
+import com.example.organization.data.model.Conversation;
 import com.example.organization.data.model.Request;
 import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.events.EventsTabbedFragment;
@@ -26,6 +27,7 @@ import com.example.organization.events.ListMyEventsFragment;
 import com.example.organization.requests.ListMyRequestsFragment;
 import com.example.organization.requests.ListRequestsFragment;
 import com.example.organization.requests.RequestsTabbedFragment;
+import com.example.organization.ui.login.LoginActivity;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements
         ListEventsFragment.OnListFragmentInteractionListener,
         EventsTabbedFragment.OnFragmentInteractionListener,
 
-        MessagesFragment.OnFragmentInteractionListener{
+        MessagesFragment.OnListFragmentInteractionListener{
 
     private TextView mTextMessage;
     Fragment requestsTabbedFragment = new RequestsTabbedFragment();
@@ -61,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (LoginDataSource.getInitiator() == null){
+            startLogin();
+        }
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
@@ -110,6 +116,11 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    private void startLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     private void setProfileImage(String url) {
         System.out.println("Profile iamge SET ________________----------------");
         if (url != null) {
@@ -151,7 +162,6 @@ public class MainActivity extends AppCompatActivity implements
                     return true;
                 case R.id.navigation_messages:
                     System.out.println("Omad---------");
-
                     transaction.replace(R.id.fragment, messagesFragment);
                     transaction.commit();
                     return true;
@@ -191,6 +201,12 @@ public class MainActivity extends AppCompatActivity implements
     private void startEditMyRequest(Request myRequest) {
         Intent intent = new Intent(this, EditMyRequest.class);
         intent.putExtra("myRequest", myRequest.getRequestId());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onListFragmentInteraction(Conversation item) {
+        Intent intent = new Intent(this, SendMessage.class);
         startActivity(intent);
     }
 }
