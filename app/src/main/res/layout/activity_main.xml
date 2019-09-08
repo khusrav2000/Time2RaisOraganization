@@ -16,12 +16,12 @@
         android:background="@drawable/toolbars_background"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/icon_profile"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:elevation="5dp"
-            android:src="@drawable/gerry"
+            android:src="@drawable/photo"
             android:scaleType="centerCrop"/>
         
     </android.support.v7.widget.Toolbar>

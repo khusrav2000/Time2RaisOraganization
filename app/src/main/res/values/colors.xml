@@ -20,4 +20,5 @@
     <color name="conservation_name">#454648</color>
     <color name="conversation_last_message">#0B2031</color>
     <color name="conservation_time">#CDCDCD</color>
+    <color name="send_massage_time_color">#CDCDCD</color>
 </resources>

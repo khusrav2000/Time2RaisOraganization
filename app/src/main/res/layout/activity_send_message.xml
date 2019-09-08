@@ -4,9 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:fitsSystemWindows="false"
     tools:context=".SendMessage">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/send_message_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbars_background"
+        app:layout_constraintTop_toTopOf="parent">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/conservation_icon_profile"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="centerCrop">
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_seen_time"
+                android:textColor="@color/white"
+                android:textSize="10sp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <ScrollView
+        android:id="@+id/scroll_list_messages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/send_message_toolbar">
+
+        <LinearLayout
+            android:id="@+id/list_messages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/send_message_background_radius"
+                    android:maxWidth="300dp"
+                    android:padding="15dp"
+                    android:text="wereghjfkwefherhuerkjrt"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/time"
+                    android:textColor="@color/send_massage_time_color"
+                    android:textSize="9sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
@@ -15,23 +100,30 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <EditText
-            android:layout_width="100dp"
+            android:id="@+id/input_message"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:backgroundTint="@color/white"
+            android:layout_marginEnd="50dp"
             android:hint="@string/message"
             android:minHeight="70dp"
             android:paddingStart="20dp"
-            android:paddingEnd="5dp" />
+            android:paddingEnd="10dp"
+            android:paddingBottom="20dp" />
 
         <ImageView
+            android:id="@+id/send_message_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/pressed_send_image"
             android:src="@drawable/icon_send_button">
 
         </ImageView>
 
-    </LinearLayout>
+    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>

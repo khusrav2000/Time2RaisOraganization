@@ -43,7 +43,7 @@
                 android:src="@drawable/mish_strela"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -51,7 +51,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="-60dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/gerry" />
+                android:src="@drawable/photo" />
 
             <Button
                 android:id="@+id/add_cover"
