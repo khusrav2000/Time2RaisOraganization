@@ -79,10 +79,22 @@ public class AddingRequest extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.adding_requests_toolbar);
 
         setSupportActionBar(myToolbar);
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("");
+        //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        //actionBar.setHomeButtonEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setTitle("");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.setTitle("");
+
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                onBackPressed();// возврат на предыдущий activity
+            }
+        });
 
         // установка обработчика выбора даты для request-а.
         final DatePickerDialog.OnDateSetListener selectDateRequest = new DatePickerDialog.OnDateSetListener() {

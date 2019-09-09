@@ -63,6 +63,14 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
         } catch (ParseException e) {
             //e.printStackTrace();
         }
+
+        if (date1 == null) {
+            try {
+                date1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse("2000-10-10T10:10");
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
+        }
         return format1.format(date1);
     }
 
@@ -83,6 +91,14 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
             date1 =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(mValues.get(position).getDate());
         } catch (ParseException e) {
             //e.printStackTrace();
+        }
+
+        if (date1 == null){
+            try {
+                date1 =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse("2000-10-10T10:10");
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
         }
         holder.myRequestDate.setText(format1.format(date1));
 

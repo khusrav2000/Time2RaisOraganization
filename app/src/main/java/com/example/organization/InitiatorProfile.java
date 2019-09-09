@@ -98,11 +98,25 @@ public class InitiatorProfile extends AppCompatActivity implements View.OnClickL
         Toolbar myToolbar = (Toolbar) findViewById(R.id.profile_toolbar);
 
         setSupportActionBar(myToolbar);
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("");
-        actionBar.setHomeAsUpIndicator(R.drawable.back_button);
+        //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        //actionBar.setHomeButtonEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.setTitle("");
+
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                onBackPressed();// возврат на предыдущий activity
+            }
+        });
+
+        //actionBar.setTitle("");
+        //actionBar.setHomeAsUpIndicator(R.drawable.back_button);
+
 
         // Инициализация данных поля профиля организатора.
         backgroundProfileImage          = findViewById(R.id.background_profile_image);

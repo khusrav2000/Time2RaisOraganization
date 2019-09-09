@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -73,11 +74,24 @@ public class RequestDetail extends AppCompatActivity {
         // Верхняя меню для кнопки назад.
         Toolbar myToolbar = (Toolbar) findViewById(R.id.request_detail);
         setSupportActionBar(myToolbar);
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("");
-        actionBar.setHomeAsUpIndicator(R.drawable.back_button);
+        //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        //actionBar.setHomeButtonEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setTitle("");
+        //actionBar.setHomeAsUpIndicator(R.drawable.back_button);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
+        myToolbar.setTitle("");
+
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                onBackPressed();// возврат на предыдущий activity
+            }
+        });
 
         nameRestaurant = findViewById(R.id.restaurant_name);
         restaurantEmail = findViewById(R.id.restaurant_email);

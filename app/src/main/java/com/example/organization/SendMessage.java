@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -31,6 +32,8 @@ public class SendMessage extends AppCompatActivity {
 
     FrameLayout gridLayout;
 
+    boolean setFocus = false;
+
     LayoutInflater inflater;
 
     @Override
@@ -49,11 +52,24 @@ public class SendMessage extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.send_message_toolbar);
 
         setSupportActionBar(myToolbar);
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("");
-        actionBar.setHomeAsUpIndicator(R.drawable.back_button);
+        //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        //actionBar.setHomeButtonEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setTitle("");
+        //actionBar.setHomeAsUpIndicator(R.drawable.back_button);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
+        myToolbar.setTitle("");
+
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                onBackPressed();// возврат на предыдущий activity
+            }
+        });
 
         Picasso picasso = Picasso.get();
         picasso.load(R.drawable.photo)
@@ -66,14 +82,39 @@ public class SendMessage extends AppCompatActivity {
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendMessage();
+                if (inputMessage.getText().length() > 0) {
+                    sendMessage();
+                }
             }
         });
+
+        inputMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("ONCLICK-------------------------------------");
+                focusBottomScrollView();
+            }
+        });
+
+        inputMessage.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                System.out.println("ONTOUCH----------------------------------");
+                setFocus = true;
+                return false;
+            }
+        });
+
+        if (setFocus){
+            System.out.println("PERER------------");
+            focusBottomScrollView();
+        }
+
 
         inputMessage.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                focusBottomScrollView();
             }
 
             @Override
@@ -103,16 +144,20 @@ public class SendMessage extends AppCompatActivity {
         message.setText(inputMessage.getText().toString());
 
         listMessages.addView(view);
+        inputMessage.setText("");
+        focusBottomScrollView();
 
+        mPlayer = MediaPlayer.create(this, R.raw.sent_message);
+        mPlayer.start();
 
+    }
+
+    private void focusBottomScrollView(){
         sv.post(new Runnable() {
             @Override
             public void run() {
                 sv.fullScroll(ScrollView.FOCUS_DOWN);
             }
         });
-        mPlayer = MediaPlayer.create(this, R.raw.sent_message);
-        mPlayer.start();
-
     }
 }
