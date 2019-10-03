@@ -6,13 +6,14 @@
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
     android:background="@drawable/event_request_background"
-    android:elevation="3dp">
+    android:elevation="2dp">
     <ImageView
         android:id="@+id/my_event_main_image"
         android:layout_width="125dp"
         android:layout_height="98dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/no_photo" />
+        android:src="@drawable/no_photo"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/my_event_name"

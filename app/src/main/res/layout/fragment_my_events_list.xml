@@ -8,5 +8,5 @@
     android:layout_height="match_parent"
     app:layoutManager="LinearLayoutManager"
     tools:context=".events.ListMyEventsFragment"
-    android:background="@drawable/events_requests_background"
+    android:background="@color/background_color"
     tools:listitem="@layout/fragment_my_event_line" />
