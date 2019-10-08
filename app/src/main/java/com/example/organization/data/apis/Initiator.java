@@ -8,6 +8,7 @@ import com.example.organization.data.model.Photo;
 import com.example.organization.data.model.Request;
 import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.data.model.SendInitiatorInformation;
+import com.example.organization.data.model.SendMessage;
 import com.example.organization.data.model.UniquensessEmail;
 
 import java.util.List;
@@ -90,4 +91,6 @@ public interface Initiator {
     @Multipart
     @POST("/api/init/photos/add")
     Call<List<Photo>> addGalleryPhotos(@Header("token") String token, @Part List<MultipartBody.Part> file);
+    @POST("/api/init/msg/send")
+    Call<Messages>  sendMessages(@Header("token") String token, @Body SendMessage message);
 }

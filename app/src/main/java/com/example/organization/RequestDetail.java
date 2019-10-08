@@ -1,6 +1,7 @@
 package com.example.organization;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +9,7 @@ import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -55,7 +57,7 @@ public class RequestDetail extends AppCompatActivity {
     TextView workingEndFriday;
     TextView workingEndSaturday;
     TextView workingEndSunday;
-
+    Button  sendMessages;
     int countDonatingBack = 0 ;
     public TextView nameRestaurant;
     public TextView restaurantEmail;
@@ -116,7 +118,22 @@ public class RequestDetail extends AppCompatActivity {
         workingEndSaturday          = findViewById(R.id.working_end_saturday);
         workingEndSunday            = findViewById(R.id.working_end_sunday);
 
+        sendMessages                = findViewById(R.id.send_message);
+
+        sendMessages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startSendMessage();
+            }
+        });
+
         loadRestaurantInformation();
+    }
+
+    private void startSendMessage() {
+
+        Intent intent = new Intent(this, SendMessage.class);
+        startActivity(intent);
     }
 
     private void loadRestaurantInformation() {
