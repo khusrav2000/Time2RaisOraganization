@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements
 
     ImageView profileImage;
 
+
+
     public Fragment getRequestTabbedFragment(){
         return requestsTabbedFragment;
     }
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         profileImage = findViewById(R.id.icon_profile);
-
+        mTextMessage = findViewById(R.id.message);
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,10 +81,22 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        mTextMessage = findViewById(R.id.message);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment, eventsTabbedFragment);
-        transaction.commit();
+        int backTo = getIntent().getIntExtra("backTo",0);
+
+        if( backTo != 0 && backTo == R.id.navigation_messages){
+
+            navView.setSelectedItemId(R.id.navigation_messages);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment, messagesFragment);
+            transaction.commit();
+
+        }
+        else {
+
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment, eventsTabbedFragment);
+            transaction.commit();
+        }
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // Получения данных о пользователе.

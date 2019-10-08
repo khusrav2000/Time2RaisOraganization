@@ -1,5 +1,6 @@
 package com.example.organization;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -67,7 +68,10 @@ public class SendMessage extends AppCompatActivity {
         myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                onBackPressed();// возврат на предыдущий activity
+                //onBackPressed();// возврат на предыдущий activity
+
+               onBack();
+
             }
         });
 
@@ -127,6 +131,12 @@ public class SendMessage extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void onBack() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("backTo", R.id.navigation_messages);
+        startActivity(intent);
     }
 
     private void changePaddingBottom() {
