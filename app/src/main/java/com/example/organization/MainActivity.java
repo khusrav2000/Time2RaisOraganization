@@ -21,12 +21,14 @@ import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.Conversation;
 import com.example.organization.data.model.Request;
 import com.example.organization.data.model.Restaurant.RestaurantInformation;
+import com.example.organization.data.model.room.Messenger;
 import com.example.organization.events.EventsTabbedFragment;
 import com.example.organization.events.ListEventsFragment;
 import com.example.organization.events.ListMyEventsFragment;
 import com.example.organization.requests.ListMyRequestsFragment;
 import com.example.organization.requests.ListRequestsFragment;
 import com.example.organization.requests.RequestsTabbedFragment;
+import com.example.organization.service.MNotificationManager;
 import com.example.organization.ui.login.LoginActivity;
 import com.squareup.picasso.Picasso;
 
@@ -70,6 +72,10 @@ public class MainActivity extends AppCompatActivity implements
             startLogin();
         }
         setContentView(R.layout.activity_main);
+
+        MNotificationManager.getInstance(getApplication()).updateDeviceId();
+
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         profileImage = findViewById(R.id.icon_profile);
@@ -204,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements
     public void startRequestInfoActivity(RestaurantInformation requests){
         Intent intent = new Intent(this, RequestDetail.class);
         intent.putExtra("request", requests.getRestaurantId());
+        System.out.println("--------------------" + requests.getRestaurantId());
         startActivity(intent);
     }
 
@@ -219,8 +226,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onListFragmentInteraction(Conversation item) {
+    public void onListFragmentInteraction(Messenger item) {
         Intent intent = new Intent(this, SendMessage.class);
+        intent.putExtra(Constants.MESSENGER_ID_PARAM, item.getMessengerId());
         startActivity(intent);
     }
 }

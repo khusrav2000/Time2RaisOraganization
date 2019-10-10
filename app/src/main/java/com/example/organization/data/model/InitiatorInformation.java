@@ -59,6 +59,8 @@ public class InitiatorInformation {
     @Expose
     private String backgroundImageUrl;
 
+
+
     public InitiatorInformation(int initId, String email, String adress, double lan, double lat, double stars, String phone, String name, int zipCode, String about, List<Photo> photos, String iconUrl, String backgroundImageUrl) {
         this.initId = initId;
         this.email = email;

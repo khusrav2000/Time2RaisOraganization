@@ -129,6 +129,9 @@ public class ListRequestsFragment extends Fragment {
 
                     List<RestaurantInformation> requests = (List<RestaurantInformation>) response.body();
                     System.out.println("----------------Request are loaded ---------------------------");
+                    for (RestaurantInformation restaurantInformation: requests){
+                        System.out.println(restaurantInformation.toString());
+                    }
                     setAdapter(requests);
                 }
             }

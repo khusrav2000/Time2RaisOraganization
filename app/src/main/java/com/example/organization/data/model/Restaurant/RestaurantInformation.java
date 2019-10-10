@@ -9,6 +9,7 @@ import java.util.List;
 import javax.sql.StatementEvent;
 
 public class RestaurantInformation {
+
     @SerializedName("OrgID")
     @Expose
     private int restaurantId;

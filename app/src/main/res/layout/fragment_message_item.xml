@@ -6,7 +6,12 @@
     android:orientation="horizontal"
     android:layout_marginTop="1dp">
 
+<<<<<<< HEAD
     <de.hdodenhof.circleimageview.CircleImageView
+=======
+    <ImageView
+        android:id="@+id/conversation_img"
+>>>>>>> c5c34df6e3dc4fa125cd0d4141db006caf73f95e
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
@@ -21,6 +26,7 @@
         android:layout_marginStart="20dp"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/conversation_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/name"
@@ -28,6 +34,7 @@
             android:fontFamily="@font/roboto_bold"
             android:textColor="@color/conservation_name"/>
         <TextView
+            android:id="@+id/conversation_last_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/last_message"
@@ -36,6 +43,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/conversations_last_message_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/time"

@@ -23,6 +23,8 @@ import com.example.organization.data.model.Restaurant.CashBackItems;
 import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.data.model.Restaurant.TimeTable;
 import com.example.organization.data.model.Restaurant.WeekDay;
+import com.example.organization.data.model.room.Messenger;
+import com.example.organization.room.MessengerViewModel;
 import com.squareup.picasso.Picasso;
 
 
@@ -41,7 +43,7 @@ public class RequestDetail extends AppCompatActivity {
     int restaurantId;
 
     final String storageUrl = "https://drive.google.com/uc?export=download&id=";
-
+    private MessengerViewModel mMessengerViewModel;
     TextView workingStartMonday;
     TextView workingStartTuesday;
     TextView workingStartWednesday;
@@ -71,6 +73,7 @@ public class RequestDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restaurantId = getIntent().getIntExtra("request" , 0);
+        System.out.println("get ------ -- - -- - - -" + restaurantId);
         setContentView(R.layout.activity_requests_detail);
 
         // Верхняя меню для кнопки назад.
@@ -87,7 +90,7 @@ public class RequestDetail extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
         myToolbar.setTitle("");
-
+        mMessengerViewModel = new MessengerViewModel(this.getApplication());
         myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -131,8 +134,14 @@ public class RequestDetail extends AppCompatActivity {
     }
 
     private void startSendMessage() {
+        // Добавления рес
+
+        Messenger messenger = new Messenger(restaurantId, restaurantInformation.getName(), restaurantInformation.getEmail(), 0,
+                restaurantInformation.getIconUrl(), "" );
+        mMessengerViewModel.insert(messenger);
 
         Intent intent = new Intent(this, SendMessage.class);
+        intent.putExtra(Constants.MESSENGER_ID_PARAM, restaurantId);
         startActivity(intent);
     }
 
@@ -150,6 +159,7 @@ public class RequestDetail extends AppCompatActivity {
                 restaurantInformation = (RestaurantInformation) response.body();
                 System.out.println(restaurantInformation.toString());
                 if (response.isSuccessful())
+                    System.out.println(restaurantInformation.toString());
                     fillFields();
             }
 

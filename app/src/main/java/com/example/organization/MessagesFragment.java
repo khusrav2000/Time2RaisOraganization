@@ -1,7 +1,11 @@
 package com.example.organization;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.organization.data.model.Conversation;
+import com.example.organization.data.model.room.Messenger;
+import com.example.organization.room.MessengerViewModel;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +35,7 @@ public class MessagesFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
-
+    private MessengerViewModel mMessengerViewModel;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -71,15 +77,25 @@ public class MessagesFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
-            setAdapter();
+            mMessengerViewModel = ViewModelProviders.of(this).get(MessengerViewModel.class);
+            setAdapter(mMessengerViewModel.getAllMessenger().getValue());
+            mMessengerViewModel.getAllMessenger().observe(this, new Observer<List<Messenger>>() {
+                @Override
+                public void onChanged(@Nullable List<Messenger> messengers) {
+                    //adapter.setMessenger(messengers);
+                    setAdapter(messengers);
+                }
+            });
+
 
         }
         return view;
     }
 
-    private void setAdapter() {
-        List<Conversation> conversations = new LinkedList<>();
-        conversations.add(new Conversation());
+    private void setAdapter(List<Messenger> conversations) {
+        //List<Messenger> conversations = new LinkedList<>();
+        //conversations.add(new Conversation());
+
         recyclerView.setAdapter(new MessagesListRecyclerViewAdapter(conversations, mListener));
     }
 
@@ -113,6 +129,6 @@ public class MessagesFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Conversation item);
+        void onListFragmentInteraction(Messenger item);
     }
 }
