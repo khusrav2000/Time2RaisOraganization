@@ -22,6 +22,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -91,6 +92,12 @@ public interface Initiator {
     @Multipart
     @POST("/api/init/photos/add")
     Call<List<Photo>> addGalleryPhotos(@Header("token") String token, @Part List<MultipartBody.Part> file);
+
     @POST("/api/init/msg/send")
     Call<Messages>  sendMessages(@Header("token") String token, @Body SendMessage message);
+
+    @PUT("/api/init/deviceid")
+    Call<Messages> updateDeviceId(@Header("token") String token, @Body SendInitiatorInformation information);
+
+
 }

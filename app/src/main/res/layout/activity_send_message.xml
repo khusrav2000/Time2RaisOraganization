@@ -46,7 +46,7 @@
 
     </android.support.v7.widget.Toolbar>
 
-
+<!--
     <ScrollView
         android:id="@+id/scroll_list_messages"
         android:layout_width="match_parent"
@@ -89,6 +89,12 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/scroll_list_messages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/send_message_toolbar"/>
 
     <FrameLayout
         android:id="@+id/gridLayout"

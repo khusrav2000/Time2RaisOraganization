@@ -61,7 +61,16 @@ public class SendInitiatorInformation {
     @Expose
     private String backgroundImageUrl;
 
-    public SendInitiatorInformation(int initId, String email, String password, String address, double lan, double lat, double stars, String phone, String name, int zipCode, String about, String galleryUrl, String iconUrl, String backgroundImageUrl) {
+    @SerializedName("DeviceID")
+    @Expose
+    private String deviceId;
+
+    public SendInitiatorInformation() {
+    }
+
+    public SendInitiatorInformation(int initId, String email, String password, String address, double lan, double lat,
+                                    double stars, String phone, String name, int zipCode, String about, String galleryUrl,
+                                    String iconUrl, String backgroundImageUrl) {
         this.initId = initId;
         this.email = email;
         this.password = password;
@@ -76,6 +85,7 @@ public class SendInitiatorInformation {
         this.galleryUrl = galleryUrl;
         this.iconUrl = iconUrl;
         this.backgroundImageUrl = backgroundImageUrl;
+
     }
 
     public int getInitId() {
@@ -189,6 +199,14 @@ public class SendInitiatorInformation {
     public void setBackgroundImageUrl(String backgroundImageUrl) {
         this.backgroundImageUrl = backgroundImageUrl;
     }
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
 
     @Override
     public String toString() {
@@ -207,6 +225,7 @@ public class SendInitiatorInformation {
                 ", galleryUrl='" + galleryUrl + '\'' +
                 ", iconUrl='" + iconUrl + '\'' +
                 ", backgroundImageUrl='" + backgroundImageUrl + '\'' +
+                ", deviceId='" + deviceId + '\'' +
                 '}';
     }
 }

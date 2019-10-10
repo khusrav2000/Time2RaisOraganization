@@ -8,6 +8,9 @@ import com.google.gson.annotations.SerializedName;
  */
 public class LogInInitiator {
 
+    @SerializedName("InitID")
+    @Expose
+    private int initId;
 
     @SerializedName("Email")
     @Expose
@@ -41,7 +44,8 @@ public class LogInInitiator {
     @Expose
     private String token;
 
-    public LogInInitiator(String email, String address, double lan, double lat, float stars, String phone, String orgname, String token) {
+    public LogInInitiator(int initId, String email, String address, double lan, double lat, float stars, String phone, String orgname, String token) {
+        this.initId = initId;
         this.email = email;
         this.address = address;
         this.lan = lan;
@@ -50,6 +54,14 @@ public class LogInInitiator {
         this.phone = phone;
         this.initiatorName = orgname;
         this.token = token;
+    }
+
+    public int getInitId() {
+        return initId;
+    }
+
+    public void setInitId(int initId) {
+        this.initId = initId;
     }
 
     public String getEmail() {
