@@ -69,7 +69,6 @@ public class SendMessage extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 //onBackPressed();// возврат на предыдущий activity
-
                onBack();
 
             }
