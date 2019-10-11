@@ -1,5 +1,6 @@
 package com.example.organization;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,14 +29,26 @@ import com.example.organization.events.ListMyEventsFragment;
 import com.example.organization.requests.ListMyRequestsFragment;
 import com.example.organization.requests.ListRequestsFragment;
 import com.example.organization.requests.RequestsTabbedFragment;
+import com.example.organization.room.MessengerViewModel;
 import com.example.organization.service.MNotificationManager;
 import com.example.organization.ui.login.LoginActivity;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static com.google.firebase.firestore.DocumentChange.Type.ADDED;
 
 public class MainActivity extends AppCompatActivity implements
         ListMyRequestsFragment.OnListFragmentInteractionListener,
@@ -57,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements
     boolean setProfileImage = false;
 
     ImageView profileImage;
+    FirebaseFirestore mFirestore ;
+    private MessengerViewModel mMessengerViewModel;
+    ListenerRegistration lg;
 
 
 
@@ -230,5 +246,55 @@ public class MainActivity extends AppCompatActivity implements
         Intent intent = new Intent(this, SendMessage.class);
         intent.putExtra(Constants.MESSENGER_ID_PARAM, item.getMessengerId());
         startActivity(intent);
+    }
+    protected void onStart() {
+        super.onStart();
+
+        mMessengerViewModel = ViewModelProviders.of(this).get(MessengerViewModel.class);
+
+
+
+        mFirestore = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setTimestampsInSnapshotsEnabled(true)
+                .build();
+        mFirestore.setFirestoreSettings(settings);
+
+        Query query = mFirestore.collection("MessangerRestouran")
+                .whereEqualTo("Restouran.RestouranID", LoginDataSource.getInitiator().getInitId());
+
+        EventListener<QuerySnapshot> eventListener = new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot snapshot, FirebaseFirestoreException e) {
+
+                for (DocumentChange change : snapshot.getDocumentChanges()){
+
+                    // System.out.println("Document messenger change : " + change.getDocument().getId());
+                    DocumentSnapshot snap = change.getDocument();
+
+                    if ( change.getType() == ADDED ){
+
+                        String email =(String) snap.get("Initiator.Email");
+                        String icon =(String) snap.get("Initiator.Icon");
+                        long id =(long) snap.get("Initiator.InitiatorID");
+                        String name =(String) snap.get("Initiator.Name");
+                        //int messengerId,  String name, String email, int nNewPost, String iconUri, String lastMessage
+
+                        Messenger messenger = new Messenger((int) id, name, email, 0, icon, "");
+
+                        //mMessengerViewModel.insert(messenger);
+
+                    }
+
+                }
+            }
+        };
+
+        lg = query.addSnapshotListener(eventListener);
+    }
+
+    protected void onStop(){
+        super.onStop();
+        lg.remove();
     }
 }
