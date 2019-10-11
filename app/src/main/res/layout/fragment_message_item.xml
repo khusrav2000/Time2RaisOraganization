@@ -2,16 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-    android:background="@color/white"
-    android:orientation="horizontal"
-    android:layout_marginTop="1dp">
+    android:background="@drawable/conversation_bottom_border"
+    android:orientation="horizontal">
 
-<<<<<<< HEAD
-    <de.hdodenhof.circleimageview.CircleImageView
-=======
     <ImageView
         android:id="@+id/conversation_img"
->>>>>>> c5c34df6e3dc4fa125cd0d4141db006caf73f95e
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"

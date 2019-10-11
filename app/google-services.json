@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "367633416459",
+    "firebase_url": "https://time2raise-274fe.firebaseio.com",
+    "project_id": "time2raise-274fe",
+    "storage_bucket": "time2raise-274fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367633416459:android:1179a7302c901ce1d1e20e",
+        "android_client_info": {
+          "package_name": "com.example.organization"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "367633416459-rjop59dr8hdlkmlus45lgs8minkgcqcb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.organization",
+            "certificate_hash": "01bf8b35793506cfc51a424ff963c0fe15af3c76"
+          }
+        },
+        {
+          "client_id": "367633416459-g3kghujhc4rp29rge3vul281s0rgmr97.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.organization",
+            "certificate_hash": "87927ce46118940fdad7a9408d6c0ee34236ac3f"
+          }
+        },
+        {
+          "client_id": "367633416459-8cb2rru99e20ibsn61mu3oseg5jpg7lb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKnXloqkFXCWLKS8abpYcVPcy3zs5N0Sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367633416459-8cb2rru99e20ibsn61mu3oseg5jpg7lb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367633416459:android:72bccf3b5f7b0c64d1e20e",
+        "android_client_info": {
+          "package_name": "org.charitable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "367633416459-k7gb06ig8ncs2v8dv5icbqesm0f95u7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.charitable",
+            "certificate_hash": "87927ce46118940fdad7a9408d6c0ee34236ac3f"
+          }
+        },
+        {
+          "client_id": "367633416459-8cb2rru99e20ibsn61mu3oseg5jpg7lb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKnXloqkFXCWLKS8abpYcVPcy3zs5N0Sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367633416459-8cb2rru99e20ibsn61mu3oseg5jpg7lb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
