@@ -59,7 +59,10 @@ import static com.google.firebase.firestore.DocumentChange.Type.ADDED;
 
 public class SendMessage extends AppCompatActivity {
 
-    ImageView conversationIconProfile;
+    ImageView interlocutorIconProfile;
+    TextView interlocutorName;
+    TextView interlocutorLastSeen;
+
     ImageView sendMessageButton;
     LinearLayout listMessages;
     EditText inputMessage;
@@ -71,7 +74,13 @@ public class SendMessage extends AppCompatActivity {
     MessageRecyclerViewAdapter adapter;
     FrameLayout gridLayout;
 
+    FrameLayout showMessageDate;
+
+    TextView showMessageDateText;
+
     boolean setFocus = false;
+
+    LinearLayoutManager linearLayoutManager;
 
     LayoutInflater inflater;
     private FirebaseFirestore mFirestore;
@@ -86,11 +95,16 @@ public class SendMessage extends AppCompatActivity {
 
         messengerId = getIntent().getIntExtra(Constants.MESSENGER_ID_PARAM, 0);
 
-        conversationIconProfile         = findViewById(R.id.conservation_icon_profile);
+        interlocutorIconProfile         = findViewById(R.id.interlocutor_icon_profile);
+        interlocutorName                = findViewById(R.id.interlocutor_name);
         sendMessageButton               = findViewById(R.id.send_message_button);
         //listMessages                    = findViewById(R.id.list_messages);
         inputMessage                    = findViewById(R.id.input_message);
         gridLayout                      = findViewById(R.id.gridLayout);
+
+        showMessageDate                 = findViewById(R.id.show_message_date);
+
+        showMessageDateText             = findViewById(R.id.message_date);
 
 
         inflater = LayoutInflater.from(this);
@@ -118,16 +132,35 @@ public class SendMessage extends AppCompatActivity {
             }
         });
 
+        setProfileInformation();
+
         messengerViewModel = new MessengerViewModel(this.getApplication());
         recyclerView = findViewById(R.id.scroll_list_messages);
         Context context = recyclerView.getContext();
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        linearLayoutManager = new LinearLayoutManager(context);
+        //linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                showMessageDate.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                showMessageDate.setVisibility(View.VISIBLE);
+                System.out.println("Possiino Scroll;" +  dy);
+
+            }
+        });
+
 
         List<Messages> messages = messengerViewModel.getAllMessagesByMessengerId(messengerId).getValue();
-
-
-
-        adapter = new MessageRecyclerViewAdapter(getApplicationContext());
+        adapter = new MessageRecyclerViewAdapter(getApplicationContext(), showMessageDateText);
         recyclerView.setAdapter(adapter);
 
         messengerViewModel.getAllMessagesByMessengerId(messengerId).observe(this, new Observer<List<Messages>>() {
@@ -141,13 +174,6 @@ public class SendMessage extends AppCompatActivity {
 
 
 
-        Picasso picasso = Picasso.get();
-        picasso.load(R.drawable.photo)
-                .fit()
-                .transform(new CircleTransform())
-                .centerCrop()
-                .placeholder(R.drawable.photo)
-                .into(conversationIconProfile);
 
         mFirestore = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -211,28 +237,18 @@ public class SendMessage extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("ONCLICK-------------------------------------");
                 //focusBottomScrollView();
+                linearLayoutManager.setReverseLayout(true);
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setAdapter(adapter);
             }
         });
 
-        inputMessage.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                System.out.println("ONTOUCH----------------------------------");
-                setFocus = true;
-                return false;
-            }
-        });
-
-        if (setFocus){
-            System.out.println("PERER------------");
-            //focusBottomScrollView();
-        }
 
 
         inputMessage.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-              //  focusBottomScrollView();
+
             }
 
             @Override
@@ -245,6 +261,24 @@ public class SendMessage extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setProfileInformation() {
+
+        String name = getIntent().getStringExtra(Constants.MESSENGER_NAME_PARAM);
+        String url = getIntent().getStringExtra(Constants.MESSENGER_ICON_URL);
+
+        Picasso picasso = Picasso.get();
+        picasso.load(Constants.IMAGE_URL_PREFIX + url)
+                .fit()
+                .centerCrop()
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.photo)
+                .into(interlocutorIconProfile);
+
+        System.out.println("NAAAAAAAAAAAME = " + name);
+        interlocutorName.setText(name);
+
     }
 
     private void onBack() {

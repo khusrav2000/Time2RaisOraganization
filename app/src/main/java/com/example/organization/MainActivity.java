@@ -245,6 +245,8 @@ public class MainActivity extends AppCompatActivity implements
     public void onListFragmentInteraction(Messenger item) {
         Intent intent = new Intent(this, SendMessage.class);
         intent.putExtra(Constants.MESSENGER_ID_PARAM, item.getMessengerId());
+        intent.putExtra(Constants.MESSENGER_NAME_PARAM, item.getName());
+        intent.putExtra(Constants.MESSENGER_ICON_URL, item.getIconUri());
         startActivity(intent);
     }
     protected void onStart() {
