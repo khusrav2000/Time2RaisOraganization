@@ -54,19 +54,19 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
         return new ViewHolder(view);
     }
 
-    public String getCorrectTime(String date){
+    private String getCorrectTime(String date){
         String format = "HH:mm aa";
         SimpleDateFormat format1= new SimpleDateFormat(format);
         Date date1 = null;
         try {
-            date1 =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(date);
+            date1 =new SimpleDateFormat("HH:mm:ss").parse(date);
         } catch (ParseException e) {
             //e.printStackTrace();
         }
 
         if (date1 == null) {
             try {
-                date1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse("2000-10-10T10:10");
+                date1 = new SimpleDateFormat("HH:mm:ss").parse("10:10:00");
             } catch (ParseException e) {
                 //e.printStackTrace();
             }
@@ -84,23 +84,9 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
                         getCorrectTime(mValues.get(position).getEnd()));
 
 
-        String format = "MMM dd yyyy";
-        SimpleDateFormat format1= new SimpleDateFormat(format);
-        Date date1 = null;
-        try {
-            date1 =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(mValues.get(position).getDate());
-        } catch (ParseException e) {
-            //e.printStackTrace();
-        }
 
-        if (date1 == null){
-            try {
-                date1 =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse("2000-10-10T10:10");
-            } catch (ParseException e) {
-                //e.printStackTrace();
-            }
-        }
-        holder.myRequestDate.setText(format1.format(date1));
+
+        holder.myRequestDate.setText(getCorrectDate(mValues.get(position).getDate()));
 
 
         /*List<Photo> photos = mValues.get(position).getPhotos();
@@ -188,5 +174,26 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
         public String toString() {
             return super.toString() + " '" + myNameRequest.getText() + "'";
         }
+    }
+
+    private String getCorrectDate(String date){
+        String format = "MMM dd yyyy";
+        SimpleDateFormat format1= new SimpleDateFormat(format);
+        System.out.println(" DATE = " + date);
+        Date date1 = null;
+        try {
+            date1 =new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        } catch (ParseException e) {
+            //e.printStackTrace();
+        }
+
+        if (date1 == null){
+            try {
+                date1 =new SimpleDateFormat("yyyy-MM-dd").parse("2000-10-10T10:10");
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
+        }
+        return format1.format(date1);
     }
 }

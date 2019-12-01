@@ -59,23 +59,7 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
         holder.mItem = mValues.get(position);
 
         holder.nameRequest.setText(mValues.get(position).getName());
-        /*holder.requestStartEndTime.setText(mValues.get(position).getStart() + mValues.get(position).getEnd());
 
-        // Устанавливаем дату проведения event-а в нужном формате.
-        String format = "MMM dd yyyy";
-        SimpleDateFormat format1= new SimpleDateFormat(format);
-        Date date1 = null;
-        try {
-            date1 =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(mValues.get(position).getDate());
-        } catch (ParseException e) {
-            //e.printStackTrace();
-        }
-        if (date1 != null)
-            holder.requestDate.setText(format1.format(date1));
-        else holder.requestDate.setText("--");
-        // Список URL адресов фотографий event-а.
-        /*List<Photo> photos = mValues.get(position).getPhotos();
-        */
         List<Photo> photos = null;
         if (photos != null) {
             // Если у event-а есть фотографии, то ищем какая из них главная и устанваливем его.
@@ -160,4 +144,46 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
             return super.toString() + " '" + nameRequest.getText() + "'";
         }
     }
+
+    private String getCorrectTime(String date){
+        String format = "HH:mm aa";
+        SimpleDateFormat format1= new SimpleDateFormat(format);
+        Date date1 = null;
+        try {
+            date1 =new SimpleDateFormat("HH:mm:ss").parse(date);
+        } catch (ParseException e) {
+            //e.printStackTrace();
+        }
+
+        if (date1 == null) {
+            try {
+                date1 = new SimpleDateFormat("HH:mm:ss").parse("10:10:00");
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
+        }
+        return format1.format(date1);
+    }
+
+    private String getCorrectDate(String date){
+        String format = "MMM dd yyyy";
+        SimpleDateFormat format1= new SimpleDateFormat(format);
+        System.out.println(" DATE = " + date);
+        Date date1 = null;
+        try {
+            date1 =new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        } catch (ParseException e) {
+            //e.printStackTrace();
+        }
+
+        if (date1 == null){
+            try {
+                date1 =new SimpleDateFormat("yyyy-MM-dd").parse("2000-10-10T10:10");
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
+        }
+        return format1.format(date1);
+    }
+
 }
