@@ -1,5 +1,8 @@
 package com.example.organization.data.apis;
 
+import android.provider.ContactsContract;
+
+import com.example.organization.data.model.EventToOffer;
 import com.example.organization.data.model.Events;
 import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.LogInInitiator;
@@ -35,7 +38,7 @@ public interface Initiator {
     // Получения данных с сервера для организатора.
     @FormUrlEncoded
     @POST("/api/init/auth")
-    Call<LogInInitiator> logInInitiator ( @Field("email")  String email, @Field("password") String password ) ;
+    Call<LogInInitiator> logInInitiator ( @Field("email")  String email, @Field("password") String password);
 
     // Проверка на то, что есть ли такая почта.
     // В ответ получим сообщения.
@@ -49,6 +52,9 @@ public interface Initiator {
     // Получения списка event-ов организатора с лимитов в limit элементов.
     @GET("api/init/event/orgevents/{limit}")
     Call< List<Events> > getMyEvents(@Header("token") String token, @Path("limit") int limit);
+
+    @GET("api/init/events/approval/{limit}")
+    Call< List<EventToOffer> > getEventOffers(@Header("token") String token, @Path("limit") int limit);
 
     // Получения списка request-ов с лимитом в limit элементов.
     // Requests являеться моделю данных о ресторане.

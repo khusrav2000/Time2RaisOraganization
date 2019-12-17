@@ -17,12 +17,14 @@ import android.widget.TextView;
 import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
+import com.example.organization.data.model.EventToOffer;
 import com.example.organization.data.model.Events;
 import com.example.organization.data.model.InitiatorInformation;
 import com.example.organization.data.model.Conversation;
 import com.example.organization.data.model.Request;
 import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.data.model.room.Messenger;
+import com.example.organization.events.EventOfferFragment;
 import com.example.organization.events.EventsTabbedFragment;
 import com.example.organization.events.ListEventsFragment;
 import com.example.organization.events.ListMyEventsFragment;
@@ -43,6 +45,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.sql.SQLOutput;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,7 +63,9 @@ public class MainActivity extends AppCompatActivity implements
         ListEventsFragment.OnListFragmentInteractionListener,
         EventsTabbedFragment.OnFragmentInteractionListener,
 
-        MessagesFragment.OnListFragmentInteractionListener{
+        MessagesFragment.OnListFragmentInteractionListener,
+
+        EventOfferFragment.OnListFragmentInteractionListener {
 
     private TextView mTextMessage;
     Fragment requestsTabbedFragment = new RequestsTabbedFragment();
@@ -263,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements
         mFirestore.setFirestoreSettings(settings);
 
         Query query = mFirestore.collection("MessangerRestouran")
-                .whereEqualTo("Restouran.RestouranID", LoginDataSource.getInitiator().getInitId());
+                .whereEqualTo("Initiator.InitiatorID", LoginDataSource.getInitiator().getInitId());
 
         EventListener<QuerySnapshot> eventListener = new EventListener<QuerySnapshot>() {
             @Override
@@ -273,18 +279,19 @@ public class MainActivity extends AppCompatActivity implements
 
                     // System.out.println("Document messenger change : " + change.getDocument().getId());
                     DocumentSnapshot snap = change.getDocument();
+                    System.out.println("ADEEEEEEEED ----------------- IFFFFFFFFFFF");
 
                     if ( change.getType() == ADDED ){
 
-                        String email =(String) snap.get("Initiator.Email");
-                        String icon =(String) snap.get("Initiator.Icon");
-                        long id =(long) snap.get("Initiator.InitiatorID");
-                        String name =(String) snap.get("Initiator.Name");
+                        String email =(String) snap.get("Restouran.Email");
+                        String icon =(String) snap.get("Restouran.Icon");
+                        long id =(long) snap.get("Restouran.RestouranID");
+                        String name =(String) snap.get("Restouran.Name");
                         //int messengerId,  String name, String email, int nNewPost, String iconUri, String lastMessage
 
                         Messenger messenger = new Messenger((int) id, name, email, 0, icon, "");
-
-                        //mMessengerViewModel.insert(messenger);
+                        System.out.println("TO UPDATE BUT NOT!");
+                        mMessengerViewModel.insert(messenger);
 
                     }
 
@@ -298,5 +305,10 @@ public class MainActivity extends AppCompatActivity implements
     protected void onStop(){
         super.onStop();
         lg.remove();
+    }
+
+    @Override
+    public void onListFragmentInteraction(EventToOffer item) {
+
     }
 }

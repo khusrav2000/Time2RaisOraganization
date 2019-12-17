@@ -9,13 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.example.organization.R;
 import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
 import com.example.organization.data.apis.Initiator;
-import com.example.organization.data.model.Events;
+import com.example.organization.data.model.EventToOffer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,24 +31,24 @@ import retrofit2.Retrofit;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-
-public class ListMyEventsFragment extends Fragment  {
-
+public class EventOfferFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
-
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
 
-
-    public ListMyEventsFragment() {
+    /**
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
+     */
+    public EventOfferFragment() {
     }
 
 
     @SuppressWarnings("unused")
-    public static ListMyEventsFragment newInstance(int columnCount) {
-        ListMyEventsFragment fragment = new ListMyEventsFragment();
+    public static EventOfferFragment newInstance(int columnCount) {
+        EventOfferFragment fragment = new EventOfferFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -65,7 +67,7 @@ public class ListMyEventsFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_events_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_eventoffer_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -76,10 +78,37 @@ public class ListMyEventsFragment extends Fragment  {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            loadMyEvents();
-            //recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            loadEventOffer();
+            //recyclerView.setAdapter(new MyEventOfferRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
+    }
+
+    private void loadEventOffer() {
+        Retrofit retrofit = NetworkClient.getRetrofitClient();
+        Initiator initiator = retrofit.create(Initiator.class);
+        Call call = initiator.getEventOffers(LoginDataSource.getInitiator().getToken(), 25);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                if (response.code() == 200){
+                    List<EventToOffer> eventToOffers = (List<EventToOffer>) response.body();
+                    setAdapter(eventToOffers);
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void setAdapter(List<EventToOffer> eventToOffers){
+        if (eventToOffers != null) {
+            recyclerView.setAdapter(new MyEventOfferRecyclerViewAdapter(eventToOffers, mListener));
+        }
     }
 
 
@@ -102,38 +131,6 @@ public class ListMyEventsFragment extends Fragment  {
 
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Events item);
-    }
-
-    private void loadMyEvents(){
-
-        // Загрузка списка event-ов с сервера.
-        Retrofit retrofit = NetworkClient.getRetrofitClient();
-        Initiator iOrganization = retrofit.create(Initiator.class);
-
-        // TODO: Поменять лимит для количество event-ов.
-        System.out.println("SEND ------------------------------------------------------------------");
-        Call call = iOrganization.getMyEvents(LoginDataSource.getInitiator().getToken(), 25);
-
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-
-                if (response.isSuccessful()) {
-                    List<Events> events = (List<Events>) response.body();
-                    System.out.println("----------------My Events are loaded ---------------------------");
-                    setAdapter(events);
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void setAdapter(List<Events> events){
-        recyclerView.setAdapter(new MyListMyEventsRecyclerViewAdapter(events, mListener));
+        void onListFragmentInteraction(EventToOffer item);
     }
 }

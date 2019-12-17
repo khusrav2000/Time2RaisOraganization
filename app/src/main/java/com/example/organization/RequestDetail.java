@@ -142,6 +142,8 @@ public class RequestDetail extends AppCompatActivity {
 
         Intent intent = new Intent(this, SendMessage.class);
         intent.putExtra(Constants.MESSENGER_ID_PARAM, restaurantId);
+        intent.putExtra(Constants.MESSENGER_NAME_PARAM, restaurantInformation.getName());
+        intent.putExtra(Constants.MESSENGER_ICON_URL, restaurantInformation.getIconUrl());
         startActivity(intent);
     }
 

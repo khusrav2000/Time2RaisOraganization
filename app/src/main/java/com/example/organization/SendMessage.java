@@ -95,6 +95,8 @@ public class SendMessage extends AppCompatActivity {
 
         messengerId = getIntent().getIntExtra(Constants.MESSENGER_ID_PARAM, 0);
 
+        System.out.println("MEssager ID = " + messengerId);
+
         interlocutorIconProfile         = findViewById(R.id.interlocutor_icon_profile);
         interlocutorName                = findViewById(R.id.interlocutor_name);
         sendMessageButton               = findViewById(R.id.send_message_button);

@@ -18,7 +18,7 @@ import com.example.organization.R;
 public class EventsSectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.events, R.string.my_events};
+    private static final int[] TAB_TITLES = new int[]{R.string.events, R.string.my_events, R.string.event_offers};
     private final Context mContext;
 
     public EventsSectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -33,10 +33,16 @@ public class EventsSectionsPagerAdapter extends FragmentPagerAdapter {
         System.out.println(" -  -- - - - -" );
         System.out.println(position);
         if (position == 0) {
+            System.out.println("Events ---------------");
             return ListEventsFragment.newInstance(1);
         } else if (position == 1){
+            System.out.println("My Events --------------------");
             return ListMyEventsFragment.newInstance(1);
+        } else if (position == 2){
+            System.out.println("Event offers --------------------");
+            return EventOfferFragment.newInstance(1);
         } else {
+            System.out.println("Not Anyone --------------");
             return ListMyEventsFragment.newInstance(1);
         }
     }
@@ -50,6 +56,6 @@ public class EventsSectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 2 total pages.
-        return 2;
+        return 3;
     }
 }
