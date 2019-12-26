@@ -152,4 +152,7 @@
     <string name="cancel">Cancel</string>
     <string name="accept">Accept</string>
     <string name="search">Search</string>
+    <string name="dont_have_events">Don\'t have events</string>
+    <string name="search_by_name">Search by name</string>
+    <string name="search_by_zip_code">Search by zip code</string>
 </resources>

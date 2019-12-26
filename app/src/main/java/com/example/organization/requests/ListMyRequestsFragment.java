@@ -40,6 +40,9 @@ public class ListMyRequestsFragment extends Fragment  {
     private int mColumnCount = 1;
     private ListMyRequestsFragment.OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
+    MyListMyRequestsRecyclerViewAdapter adapter;
+
+    String lastSearchText;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -155,8 +158,21 @@ public class ListMyRequestsFragment extends Fragment  {
     }
 
     private void setAdapter(List<Request> requests){
-        recyclerView.setAdapter(new MyListMyRequestsRecyclerViewAdapter(requests, mListener));
+        adapter = new MyListMyRequestsRecyclerViewAdapter(getActivity(), requests, mListener);
+        recyclerView.setAdapter(adapter);
+
+        if (lastSearchText != null){
+            adapter.getFilter().filter(lastSearchText);
+        }
     }
+
+    public void setFilter(String textPattern) {
+        lastSearchText = textPattern;
+        if (textPattern != null){
+            adapter.getFilter().filter(lastSearchText);
+        }
+    }
+
 
     private void startAddingRequest() {
         Intent intent = new Intent(getActivity(), AddingRequest.class);

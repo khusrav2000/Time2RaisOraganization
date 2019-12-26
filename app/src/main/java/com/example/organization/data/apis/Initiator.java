@@ -1,5 +1,6 @@
 package com.example.organization.data.apis;
 
+import android.app.Notification;
 import android.provider.ContactsContract;
 
 import com.example.organization.data.model.EventToOffer;
@@ -105,5 +106,9 @@ public interface Initiator {
     @PUT("/api/init/deviceid")
     Call<Messages> updateDeviceId(@Header("token") String token, @Body SendInitiatorInformation information);
 
+    @GET("api/init/event/accept/{id}")
+    Call<Messages> acceptEvent(@Header("token") String token, @Path("id") int eventId);
 
+    @GET("api/init/event/cancel/{id}")
+    Call<Messages> cancelEvent(@Header("token") String token, @Path("id") int eventId);
 }

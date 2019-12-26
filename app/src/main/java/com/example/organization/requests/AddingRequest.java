@@ -145,7 +145,7 @@ public class AddingRequest extends AppCompatActivity {
                         android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
                         selectStartTimeRequest,
                         requestStartTime.get(Calendar.HOUR_OF_DAY),
-                        requestStartTime.get(Calendar.MINUTE), true);
+                        requestStartTime.get(Calendar.MINUTE), false);
                 timePickerDialog.setTitle("Choose hour:");
                 timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 timePickerDialog.show();
@@ -160,7 +160,7 @@ public class AddingRequest extends AppCompatActivity {
                         android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
                         selectEndTimeRequest,
                         requestEndTime.get(Calendar.HOUR_OF_DAY),
-                        requestEndTime.get(Calendar.MINUTE), true);
+                        requestEndTime.get(Calendar.MINUTE), false);
                 timePickerDialog.setTitle("Choose hour:");
                 timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 timePickerDialog.show();
@@ -218,14 +218,14 @@ public class AddingRequest extends AppCompatActivity {
     }
 
     private void setStartTimeRequest() {
-        String myFormat = "hh:mm";
+        String myFormat = "hh:mm aa";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         startTimeRequest.setText(sdf.format(requestStartTime.getTime()));
     }
 
     private void setEndTimeRequest() {
-        String myFormat = "hh:mm";
+        String myFormat = "hh:mm aa";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         endTimeRequest.setText(sdf.format(requestEndTime.getTime()));

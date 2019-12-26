@@ -69,6 +69,10 @@ public class MessengerRepository {
 
     }
 
+    Messages getLastMessage(int messengerId){
+        return messagesDao.getLastMessage(messengerId);
+    }
+
     Messages getMessagesByDocId(String doc_id){
         return  messagesDao.getMessageByDocId(doc_id);
     }
@@ -412,6 +416,8 @@ public class MessengerRepository {
             return null;
         }
     }
+
+
 
 }
 

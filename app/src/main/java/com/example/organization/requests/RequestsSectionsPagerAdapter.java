@@ -11,13 +11,18 @@ import com.example.organization.R;
 
 public class RequestsSectionsPagerAdapter extends FragmentPagerAdapter {
 
+    ListRequestsFragment listRequestsFragment;
+    ListMyRequestsFragment listMyRequestsFragment;
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.requests, R.string.my_requests};
     private final Context mContext;
 
+
     public RequestsSectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+        listRequestsFragment = ListRequestsFragment.newInstance(1);
+        listMyRequestsFragment = ListMyRequestsFragment.newInstance(1);
     }
 
     @Override
@@ -25,11 +30,21 @@ public class RequestsSectionsPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
         if (position == 0) {
-            return ListRequestsFragment.newInstance(1);
+            return listRequestsFragment;
         } else if (position == 1){
-            return ListMyRequestsFragment.newInstance(1);
+            return listMyRequestsFragment;
         } else {
-            return ListMyRequestsFragment.newInstance(1);
+            return listMyRequestsFragment;
+        }
+    }
+
+    public void filterItems(String textPattern){
+        if (textPattern != null){
+            if (listRequestsFragment!= null){
+                listRequestsFragment.setFilter(textPattern);
+            } if (listMyRequestsFragment != null){
+                listMyRequestsFragment.setFilter(textPattern);
+            }
         }
     }
 

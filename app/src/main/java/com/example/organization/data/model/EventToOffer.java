@@ -8,11 +8,11 @@ import java.util.List;
 public class EventToOffer {
     @SerializedName("EventId")
     @Expose
-    private String eventId;
+    private int eventId;
 
     @SerializedName("OrgId")
     @Expose
-    private String orgId;
+    private int orgId;
 
     @SerializedName("Name")
     @Expose
@@ -38,7 +38,7 @@ public class EventToOffer {
     @Expose
     private List<Photo> photos;
 
-    public EventToOffer(String eventId, String orgId, String name, String date, String start, String end, String about, List<Photo> photos) {
+    public EventToOffer(int eventId, int orgId, String name, String date, String start, String end, String about, List<Photo> photos) {
         this.eventId = eventId;
         this.orgId = orgId;
         this.name = name;
@@ -49,19 +49,19 @@ public class EventToOffer {
         this.photos = photos;
     }
 
-    public String getEventId() {
+    public int getEventId() {
         return eventId;
     }
 
-    public void setEventId(String eventId) {
+    public void setEventId(int eventId) {
         this.eventId = eventId;
     }
 
-    public String getOrgId() {
+    public int getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(String orgId) {
+    public void setOrgId(int orgId) {
         this.orgId = orgId;
     }
 
@@ -116,8 +116,8 @@ public class EventToOffer {
     @Override
     public String toString() {
         return "EventToOffer{" +
-                "eventId='" + eventId + '\'' +
-                ", orgId='" + orgId + '\'' +
+                "eventId=" + eventId +
+                ", orgId=" + orgId +
                 ", name='" + name + '\'' +
                 ", date='" + date + '\'' +
                 ", start='" + start + '\'' +

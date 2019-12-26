@@ -50,6 +50,9 @@ public interface MessagesDao {
     @Query("UPDATE messages SET doc_id = :doc_id WHERE messages_id =:messages_id")
     void updateDocId(String doc_id, int messages_id);
 
+    @Query("SELECT * FROM messages WHERE messenger_id = :messengerId ORDER BY date_time_post DESC LIMIT 1")
+    Messages getLastMessage(int messengerId);
+
 
 
 }

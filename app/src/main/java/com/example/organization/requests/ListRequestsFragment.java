@@ -32,6 +32,9 @@ public class ListRequestsFragment extends Fragment {
     private int mColumnCount = 1;
     private ListRequestsFragment.OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
+    String lastSearchText;
+
+    MyListRequestsRecyclerViewAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -98,6 +101,8 @@ public class ListRequestsFragment extends Fragment {
         mListener = null;
     }
 
+
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -144,6 +149,19 @@ public class ListRequestsFragment extends Fragment {
     }
 
     private void setAdapter(List<RestaurantInformation> requests){
-        recyclerView.setAdapter(new MyListRequestsRecyclerViewAdapter(requests, mListener));
+        adapter = new MyListRequestsRecyclerViewAdapter(getActivity(), requests, mListener);
+        recyclerView.setAdapter(adapter);
+        if (lastSearchText != null){
+            adapter.getFilter().filter(lastSearchText);
+        }
     }
+
+    public void setFilter(String textPattern) {
+        lastSearchText = textPattern;
+        if (textPattern != null) {
+            adapter.getFilter().filter(lastSearchText);
+        }
+    }
+
+
 }

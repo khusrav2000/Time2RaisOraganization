@@ -1,12 +1,17 @@
 package com.example.organization.events;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.organization.data.model.EventToOffer;
 import com.example.organization.events.ListEventsFragment.OnListFragmentInteractionListener;
 import com.example.organization.R;
 import com.example.organization.data.model.Events;
@@ -15,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,13 +29,18 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyListEventsRecyclerViewAdapter.ViewHolder> {
+public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyListEventsRecyclerViewAdapter.ViewHolder> implements Filterable {
 
     // Список event-ов, которые мы получаем из сервера.
     // Events - Это модель для помещения в него получаемых данных из сервера.
     private final List<Events> mValues;
+    private List<Events> mValuesFull;
 
     private final OnListFragmentInteractionListener mListener;
+    Activity activity;
+
+    CheckBox searchByName;
+    CheckBox searchByZipCode;
 
     // Ссылка на хранилище фотографий этого проета.
     // Фотографии находяться в GoogleDrive-е.
@@ -37,9 +48,12 @@ public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyList
 
     View getContexts;
 
-    public MyListEventsRecyclerViewAdapter(List<Events> items, OnListFragmentInteractionListener listener) {
+    public MyListEventsRecyclerViewAdapter(Activity activity, List<Events> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
+        mValuesFull = new ArrayList<>(items);
+        searchByName = activity.findViewById(R.id.search_by_name);
+        searchByZipCode = activity.findViewById(R.id.search_by_zip_code);
     }
 
     @Override
@@ -114,6 +128,55 @@ public class MyListEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyList
             return mValues.size();
         return 0;
     }
+
+    @Override
+    public Filter getFilter() {
+        return ourFilter;
+    }
+
+    private Filter ourFilter = new Filter() {
+
+        int searchBy = 1;
+        public void setSearchBy(int i){
+            searchBy = i;
+        }
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Events> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(mValuesFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                if (searchByName.isChecked()) {
+                    for (Events item : mValuesFull) {
+                        if (item.getName().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(item);
+                        }
+                    }
+                } else {
+                    /*for (Events item : mValuesFull) {
+                        if (item.getName().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(item);
+                        }
+                    }*/
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mValues.clear();
+            mValues.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;

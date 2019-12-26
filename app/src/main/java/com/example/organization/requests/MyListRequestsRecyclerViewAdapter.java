@@ -1,13 +1,18 @@
 package com.example.organization.requests;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.organization.data.model.EventToOffer;
 import com.example.organization.data.model.Request;
 import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.example.organization.requests.ListRequestsFragment.OnListFragmentInteractionListener;
@@ -17,6 +22,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,11 +31,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyListRequestsRecyclerViewAdapter.ViewHolder> {
+public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyListRequestsRecyclerViewAdapter.ViewHolder> implements Filterable {
 
     // Список event-ов, которые мы получаем из сервера.
     // Events - Это модель для помещения в него получаемых данных из сервера.
     private final List<RestaurantInformation> mValues;
+    private List<RestaurantInformation> mValuesFull;
 
     private final ListRequestsFragment.OnListFragmentInteractionListener mListener;
 
@@ -39,9 +46,15 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
 
     View getContexts;
 
-    public MyListRequestsRecyclerViewAdapter(List<RestaurantInformation> items, OnListFragmentInteractionListener listener) {
+    CheckBox searchByName;
+    CheckBox searchByZipCode;
+
+    public MyListRequestsRecyclerViewAdapter(Activity activity, List<RestaurantInformation> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
+        mValuesFull = new ArrayList<>(items);
+        searchByName = activity.findViewById(R.id.search_by_name);
+        searchByZipCode = activity.findViewById(R.id.search_by_zip_code);
     }
 
     @Override
@@ -116,6 +129,11 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
         return 0;
     }
 
+    @Override
+    public Filter getFilter() {
+        return ourFilter;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final ImageView requestMainImage;
@@ -185,5 +203,37 @@ public class MyListRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
         }
         return format1.format(date1);
     }
+
+    private Filter ourFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<RestaurantInformation> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(mValuesFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                if (searchByName.isChecked()) {
+                    for (RestaurantInformation item : mValuesFull) {
+                        if (item.getName().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(item);
+                        }
+                    }
+                } else {
+
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mValues.clear();
+            mValues.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 }

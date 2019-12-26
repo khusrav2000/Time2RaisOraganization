@@ -20,30 +20,52 @@ public class EventsSectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.events, R.string.my_events, R.string.event_offers};
     private final Context mContext;
+    ListEventsFragment listEventsFragment;
+    ListMyEventsFragment listMyEventsFragment;
+    EventOfferFragment eventOfferFragment;
 
     public EventsSectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+        listEventsFragment = ListEventsFragment.newInstance(1);
+        listMyEventsFragment = ListMyEventsFragment.newInstance(1);
+        eventOfferFragment = EventOfferFragment.newInstance(1);
     }
+
+
 
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        System.out.println(" -  -- - - - -" );
+        System.out.println(" -  -- - - - ----------- ---------------------  -----" );
         System.out.println(position);
         if (position == 0) {
-            System.out.println("Events ---------------");
-            return ListEventsFragment.newInstance(1);
+            System.out.println("Events --------------");
+            return listEventsFragment;
         } else if (position == 1){
             System.out.println("My Events --------------------");
-            return ListMyEventsFragment.newInstance(1);
+
+            return listMyEventsFragment;
         } else if (position == 2){
-            System.out.println("Event offers --------------------");
-            return EventOfferFragment.newInstance(1);
+            return eventOfferFragment;
         } else {
             System.out.println("Not Anyone --------------");
-            return ListMyEventsFragment.newInstance(1);
+            return listEventsFragment;
+        }
+
+    }
+
+
+    public void filterItems(String textPattern){
+        if (textPattern != null){
+            if (listEventsFragment != null){
+                listEventsFragment.setFilter(textPattern);
+            } if (listMyEventsFragment != null){
+                listMyEventsFragment.setFilter(textPattern);
+            } if (eventOfferFragment != null){
+                eventOfferFragment.setFilter(textPattern);
+            }
         }
     }
 
@@ -55,7 +77,7 @@ public class EventsSectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
+        // Show 3 total pages.
         return 3;
     }
 }

@@ -38,6 +38,10 @@ public class MessengerViewModel extends AndroidViewModel {
     }
     public LiveData<List<Messenger>> getAllMessenger() { return mAllMessenger; }
 
+    public Messages getLastMessage(int messengerId){
+        return mRepository.getLastMessage(messengerId);
+    }
+
     public LiveData<List<Messages>> getAllMessagesByMessengerId(int messengerId) {
         mMessagesByMessengerId = mRepository.getAllMessagesByMessengerId(messengerId);
         return mMessagesByMessengerId;

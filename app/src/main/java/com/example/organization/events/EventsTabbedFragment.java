@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,37 +31,63 @@ public class EventsTabbedFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public EventsTabbedFragment() {
+
     }
 
+    EventsSectionsPagerAdapter sectionsPagerAdapter;
 
-    @SuppressWarnings("unused")
-    public static ListEventsFragment newInstance(int columnCount) {
-        ListEventsFragment fragment = new ListEventsFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+    public void newInstance(int columnCount) {
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        System.out.println("OnCreate ----------------------");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        System.out.println("onCratedVIEW ----------------");
         View view = inflater.inflate(R.layout.events_tabbed_fragment, container, false);
-        EventsSectionsPagerAdapter sectionsPagerAdapter = new EventsSectionsPagerAdapter(getActivity(), getChildFragmentManager());
+        sectionsPagerAdapter = new EventsSectionsPagerAdapter(getActivity(), getChildFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-
         TabLayout tabs = view.findViewById(R.id.tabs);
-
         tabs.setupWithViewPager(viewPager);
 
+        setSearchListener();
+
         return view;
+    }
+
+    public void setSearchListener(){
+        SearchView searchView = getActivity().findViewById(R.id.search);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                sectionsPagerAdapter.filterItems(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                sectionsPagerAdapter.filterItems(newText);
+                System.out.println("IT IS WORK _______________--------------");
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                sectionsPagerAdapter.filterItems("");
+                System.out.println("Close!!!!");
+                return false;
+            }
+        });
     }
 
 

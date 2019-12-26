@@ -1,21 +1,27 @@
 package com.example.organization.requests;
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.organization.data.model.Request;
 import com.example.organization.R;
 import com.example.organization.data.model.Photo;
+import com.example.organization.data.model.Restaurant.RestaurantInformation;
 import com.squareup.picasso.Picasso;
 import com.example.organization.requests.ListMyRequestsFragment.OnListFragmentInteractionListener;
 
 import java.nio.Buffer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,10 +30,11 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyListMyRequestsRecyclerViewAdapter.ViewHolder> {
+public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<MyListMyRequestsRecyclerViewAdapter.ViewHolder> implements Filterable {
 
 
     private final List<Request> mValues;
+    private List<Request> mValuesFull;
 
     private final ListMyRequestsFragment.OnListFragmentInteractionListener mListener;
 
@@ -36,10 +43,16 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
 
     View getContexts;
 
+    CheckBox searchByName;
+    CheckBox searchByZipCode;
 
-    public MyListMyRequestsRecyclerViewAdapter(List<Request> requests, ListMyRequestsFragment.OnListFragmentInteractionListener listener) {
+
+    public MyListMyRequestsRecyclerViewAdapter(Activity activity, List<Request> requests, ListMyRequestsFragment.OnListFragmentInteractionListener listener) {
         mValues = requests;
         mListener = listener;
+        mValuesFull = new ArrayList<>(requests);
+        searchByName = activity.findViewById(R.id.search_by_name);
+        searchByZipCode = activity.findViewById(R.id.search_by_zip_code);
 
     }
 
@@ -147,6 +160,11 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
         return 0;
     }
 
+    @Override
+    public Filter getFilter() {
+        return ourFilter;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
 
@@ -196,4 +214,36 @@ public class MyListMyRequestsRecyclerViewAdapter extends RecyclerView.Adapter<My
         }
         return format1.format(date1);
     }
+
+    private Filter ourFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Request> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(mValuesFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                if (searchByName.isChecked()) {
+                    for (Request item : mValuesFull) {
+                        if (item.getName().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(item);
+                        }
+                    }
+                } else {
+
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mValues.clear();
+            mValues.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

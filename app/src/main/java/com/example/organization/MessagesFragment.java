@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,8 @@ public class MessagesFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
     private MessengerViewModel mMessengerViewModel;
+    String lastSearchText;
+    MessagesListRecyclerViewAdapter adapter;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -79,6 +82,7 @@ public class MessagesFragment extends Fragment {
 
             mMessengerViewModel = ViewModelProviders.of(this).get(MessengerViewModel.class);
             setAdapter(mMessengerViewModel.getAllMessenger().getValue());
+
             mMessengerViewModel.getAllMessenger().observe(this, new Observer<List<Messenger>>() {
                 @Override
                 public void onChanged(@Nullable List<Messenger> messengers) {
@@ -87,16 +91,55 @@ public class MessagesFragment extends Fragment {
                 }
             });
 
+            setSearchListener();
+
 
         }
         return view;
     }
 
+    public void setSearchListener(){
+        SearchView searchView = getActivity().findViewById(R.id.search);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                setFilter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                setFilter(newText);
+                System.out.println("IT IS WORK _______________--------------");
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                setFilter("");
+                System.out.println("Close!!!!");
+                return false;
+            }
+        });
+    }
+
     private void setAdapter(List<Messenger> conversations) {
         //List<Messenger> conversations = new LinkedList<>();
         //conversations.add(new Conversation());
+        adapter = new MessagesListRecyclerViewAdapter(getActivity(), getViewLifecycleOwner(), getActivity().getApplication(), conversations, mListener);
+        recyclerView.setAdapter(adapter);
+        if (lastSearchText != null){
+            adapter.getFilter().filter(lastSearchText);
+        }
+    }
 
-        recyclerView.setAdapter(new MessagesListRecyclerViewAdapter(conversations, mListener));
+    public void setFilter(String textPattern) {
+        lastSearchText = textPattern;
+        if (textPattern != null) {
+            adapter.getFilter().filter(lastSearchText);
+        }
     }
 
 

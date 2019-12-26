@@ -2,16 +2,24 @@ package com.example.organization;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.SearchView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.organization.data.LoginDataSource;
@@ -65,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements
 
         MessagesFragment.OnListFragmentInteractionListener,
 
-        EventOfferFragment.OnListFragmentInteractionListener {
+        EventOfferFragment.OnListFragmentInteractionListener, PopupMenu.OnMenuItemClickListener {
 
     private TextView mTextMessage;
     Fragment requestsTabbedFragment = new RequestsTabbedFragment();
@@ -80,12 +88,6 @@ public class MainActivity extends AppCompatActivity implements
     private MessengerViewModel mMessengerViewModel;
     ListenerRegistration lg;
 
-
-
-    public Fragment getRequestTabbedFragment(){
-        return requestsTabbedFragment;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,15 +99,55 @@ public class MainActivity extends AppCompatActivity implements
 
         MNotificationManager.getInstance(getApplication()).updateDeviceId();
 
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         profileImage = findViewById(R.id.icon_profile);
         mTextMessage = findViewById(R.id.message);
+
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startProfile();
+            }
+        });
+        final FrameLayout searchFilter = findViewById(R.id.search_filter);
+
+        findViewById(R.id.image_search_filter).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("CLICK !!!!!!!!!!!!!!!!!!!!!!!!!!!!! ");
+                if (searchFilter.getVisibility() == View.GONE) {
+                    searchFilter.setVisibility(View.VISIBLE);
+                } else {
+                    searchFilter.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        final CheckBox searchByName = findViewById(R.id.search_by_name);
+        final CheckBox searchByZipCode = findViewById(R.id.search_by_zip_code);
+        searchByName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SearchView searchView = findViewById(R.id.search);
+                searchView.setQuery("", false);
+                if (isChecked){
+                    searchByZipCode.setChecked(false);
+                } else {
+                    searchByZipCode.setChecked(true);
+                }
+            }
+        });
+        searchByZipCode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SearchView searchView = findViewById(R.id.search);
+                searchView.setQuery("", false);
+                if (isChecked){
+                    searchByName.setChecked(false);
+                } else {
+                    searchByName.setChecked(true);
+                }
             }
         });
 
@@ -180,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void startProfile() {
+
         Intent intent = new Intent(this, InitiatorProfile.class);
         startActivity(intent);
     }
@@ -190,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            //setMenuItemId(item);
             switch (item.getItemId()) {
                 case R.id.navigation_events:
                     System.out.println("Omad---------");
@@ -211,6 +255,8 @@ public class MainActivity extends AppCompatActivity implements
             return false;
         }
     };
+
+
 
 
     @Override
@@ -310,5 +356,11 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onListFragmentInteraction(EventToOffer item) {
 
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+
+        return false;
     }
 }

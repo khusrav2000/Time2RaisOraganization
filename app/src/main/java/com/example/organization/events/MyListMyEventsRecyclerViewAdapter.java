@@ -1,9 +1,13 @@
 package com.example.organization.events;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,12 +28,16 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyListMyEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyListMyEventsRecyclerViewAdapter.ViewHolder> {
+public class MyListMyEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyListMyEventsRecyclerViewAdapter.ViewHolder> implements Filterable {
 
 
     private final List<Events> mValues;
+    private List<Events> mValuesFull;
 
     private final OnListFragmentInteractionListener mListener;
+
+    CheckBox searchByName;
+    CheckBox searchByZipCode;
 
 
     String StorageUrl = "https://drive.google.com/uc?export=download&id=";
@@ -36,9 +45,12 @@ public class MyListMyEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
     View getContexts;
 
 
-    public MyListMyEventsRecyclerViewAdapter(List<Events> events, OnListFragmentInteractionListener listener) {
+    public MyListMyEventsRecyclerViewAdapter(Activity activity, List<Events> events, OnListFragmentInteractionListener listener) {
         mValues = events;
         mListener = listener;
+        mValuesFull = new ArrayList<>(events);
+        searchByName = activity.findViewById(R.id.search_by_name);
+        searchByZipCode = activity.findViewById(R.id.search_by_zip_code);
 
     }
 
@@ -107,6 +119,43 @@ public class MyListMyEventsRecyclerViewAdapter extends RecyclerView.Adapter<MyLi
             }
         });
     }
+
+    @Override
+    public Filter getFilter() {
+        return ourFilter;
+    }
+
+    private Filter ourFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Events> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(mValuesFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                if (searchByName.isChecked()) {
+                    for (Events item : mValuesFull) {
+                        if (item.getName().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(item);
+                        }
+                    }
+                } else{
+
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mValues.clear();
+            mValues.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     // Получения количество event-ов с списке.
     @Override

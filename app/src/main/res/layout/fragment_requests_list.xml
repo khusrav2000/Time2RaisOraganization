@@ -9,5 +9,4 @@
     app:layoutManager="LinearLayoutManager"
     tools:context=".requests.ListRequestsFragment"
     android:background="@drawable/events_requests_background"
-    tools:listitem="@layout/fragment_request_line"
-    android:paddingBottom="100dp"/>
+    tools:listitem="@layout/fragment_request_line"/>

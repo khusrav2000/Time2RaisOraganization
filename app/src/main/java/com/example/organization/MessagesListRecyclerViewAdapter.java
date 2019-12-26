@@ -1,17 +1,36 @@
 package com.example.organization;
 
+import android.app.Activity;
+import android.app.Application;
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.organization.MessagesFragment.OnListFragmentInteractionListener;
 import com.example.organization.data.model.Conversation;
+import com.example.organization.data.model.Restaurant.RestaurantInformation;
+import com.example.organization.data.model.room.Messages;
 import com.example.organization.data.model.room.Messenger;
+import com.example.organization.events.ListMyEventsFragment;
+import com.example.organization.room.MessengerRepository;
+import com.example.organization.room.MessengerViewModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,15 +38,29 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MessagesListRecyclerViewAdapter extends RecyclerView.Adapter<MessagesListRecyclerViewAdapter.ViewHolder> {
+public class MessagesListRecyclerViewAdapter extends RecyclerView.Adapter<MessagesListRecyclerViewAdapter.ViewHolder> implements Filterable {
 
     private final List<Messenger> mValues;
+    private List<Messenger> mValuesFull;
     public static final String IMAGE_URL_PREFIX = "https://drive.google.com/uc?export=download&id=";
     private final OnListFragmentInteractionListener mListener;
+    Application application;
+    LifecycleOwner lifecycleOwner;
+    CheckBox searchByName;
+    CheckBox searchByZipCode;
 
-    public MessagesListRecyclerViewAdapter(List<Messenger> items, OnListFragmentInteractionListener listener) {
+    public MessagesListRecyclerViewAdapter(Activity activity, LifecycleOwner lifecycleOwner, Application application, List<Messenger> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
+        if (items !=  null) {
+            mValuesFull = new ArrayList<>(items);
+        } else {
+            mValuesFull = new ArrayList<>();
+        }
+        this.application = application;
+        this.lifecycleOwner = lifecycleOwner;
+        searchByName = activity.findViewById(R.id.search_by_name);
+        searchByZipCode = activity.findViewById(R.id.search_by_zip_code);
     }
 
     @Override
@@ -44,12 +77,31 @@ public class MessagesListRecyclerViewAdapter extends RecyclerView.Adapter<Messag
         //holder.mIdView.setText(mValues.get(position).id);
         //holder.mContentView.setText(mValues.get(position).content);
         holder.conversationName.setText(holder.mItem.getName());
-        holder.conversationLastMessage.setText(holder.mItem.getLastMessge());
-        holder.conversationLastMessageTime.setText("--");
+
+        holder.conversationLastMessageTime.setText("++++++");
         Picasso picasso = Picasso.get();
+
+        MessengerViewModel mMessengerViewModel = new MessengerViewModel(application);
+
+        System.out.println("IDDDDDDDDDDDDEEEEEEEEEEEE = " + holder.mItem.getMessengerId());
+        mMessengerViewModel.getAllMessagesByMessengerId(holder.mItem.getMessengerId())
+                .observe(lifecycleOwner, new Observer<List<Messages>>() {
+
+            @Override
+            public void onChanged(@Nullable List<Messages> messages) {
+                System.out.println("ITS WOOOOOOOOOOOOOOOOOOOOOOORKS");
+                if (messages != null && messages.size() > 0) {
+
+                    holder.conversationLastMessage.setText(messages.get(0).getInput() + messages.get(0).getOutput());
+                    System.out.println("----------- " + messages.get(0).getInput() + messages.get(0).getOutput());
+                }
+            }
+        });
 
         picasso.load(IMAGE_URL_PREFIX + holder.mItem.getIconUri())
                 .fit()
+                .placeholder(R.drawable.photo)
+                .error(R.drawable.no_photo)
                 .centerCrop()
                 .into(holder.conversationImg);
 
@@ -72,6 +124,11 @@ public class MessagesListRecyclerViewAdapter extends RecyclerView.Adapter<Messag
             return 0;
 
         return mValues.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return ourFilter;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -101,4 +158,37 @@ public class MessagesListRecyclerViewAdapter extends RecyclerView.Adapter<Messag
             return super.toString() + " '" + "'";
         }
     }
+
+    private Filter ourFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Messenger> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(mValuesFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                if (searchByName.isChecked()) {
+                    for (Messenger item : mValuesFull) {
+                        if (item.getName().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(item);
+                        }
+                    }
+                } else {
+
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mValues.clear();
+            mValues.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
+
 }

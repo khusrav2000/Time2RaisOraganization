@@ -3,6 +3,7 @@ package com.example.organization.events;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
+import com.example.organization.EmptyAdapter;
 import com.example.organization.R;
 import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
@@ -31,12 +34,17 @@ import retrofit2.Retrofit;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class EventOfferFragment extends Fragment {
+public class EventOfferFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    TextView noEventsText;
+
+    MyEventOfferRecyclerViewAdapter adapter;
+    String filterText;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -70,17 +78,38 @@ public class EventOfferFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_eventoffer_list, container, false);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            loadEventOffer();
-            //recyclerView.setAdapter(new MyEventOfferRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+        noEventsText = view.findViewById(R.id.text_no_events);
+
+        Context context = view.getContext();
+        recyclerView = (RecyclerView) view.findViewById(R.id.event_offers_list);
+        if (mColumnCount <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
+
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_and_refresh_event_offers);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        //recyclerView.setAdapter(new MyEventOfferRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+        mSwipeRefreshLayout.post(new Runnable() {
+
+            @Override
+            public void run() {
+
+                mSwipeRefreshLayout.setRefreshing(true);
+
+                // Fetching data from server
+                loadEventOffer();
+            }
+        });
+
         return view;
     }
 
@@ -92,22 +121,49 @@ public class EventOfferFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) {
                 if (response.code() == 200){
+                    System.out.println(response.body());
                     List<EventToOffer> eventToOffers = (List<EventToOffer>) response.body();
                     setAdapter(eventToOffers);
+
                 }
+                mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
-
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         });
 
     }
 
     private void setAdapter(List<EventToOffer> eventToOffers){
+        System.out.println("UPDATEEEEEEE!1");
         if (eventToOffers != null) {
-            recyclerView.setAdapter(new MyEventOfferRecyclerViewAdapter(eventToOffers, mListener));
+            for (EventToOffer eventToOffer : eventToOffers) {
+                System.out.println(eventToOffer + " +++++++++++++++++++");
+            }
+            if (eventToOffers.size() == 0){
+                noEventsText.setVisibility(View.VISIBLE);
+                recyclerView.setAdapter(new EmptyAdapter());
+            } else {
+                noEventsText.setVisibility(View.GONE);
+                adapter = new MyEventOfferRecyclerViewAdapter(getActivity(), eventToOffers, mListener, getContext());
+                recyclerView.setAdapter(adapter);
+                if (filterText != null && filterText.length() > 0){
+                    setFilter(filterText);
+                }
+            }
+        } else {
+            noEventsText.setVisibility(View.VISIBLE);
+            recyclerView.setAdapter(new EmptyAdapter());
+        }
+    }
+
+    public void setFilter(String text){
+        filterText = text;
+        if (adapter != null) {
+            adapter.getFilter().filter(filterText);
         }
     }
 
@@ -128,6 +184,13 @@ public class EventOfferFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onRefresh() {
+        loadEventOffer();
+    }
+
+
 
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name

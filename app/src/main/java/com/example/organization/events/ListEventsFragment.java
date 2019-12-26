@@ -2,14 +2,19 @@ package com.example.organization.events;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.organization.EmptyAdapter;
 import com.example.organization.R;
 import com.example.organization.data.LoginDataSource;
 import com.example.organization.data.NetworkClient;
@@ -23,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class ListEventsFragment extends Fragment  {
+public class ListEventsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -31,6 +36,14 @@ public class ListEventsFragment extends Fragment  {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
+
+    MyListEventsRecyclerViewAdapter adapter;
+
+
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    TextView noEventsText;
+
+    String filterText;
 
     public ListEventsFragment() {
     }
@@ -60,17 +73,42 @@ public class ListEventsFragment extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_events_list, container, false);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            loadEvents();
-            //recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+        Context context = view.getContext();
+        recyclerView = (RecyclerView) view.findViewById(R.id.events_list);
+
+        noEventsText = view.findViewById(R.id.text_no_events);
+
+
+
+        if (mColumnCount <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_events);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        //recyclerView.setAdapter(new MyEventOfferRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+        mSwipeRefreshLayout.post(new Runnable() {
+
+            @Override
+            public void run() {
+
+                mSwipeRefreshLayout.setRefreshing(true);
+
+                // Fetching data from server
+                loadEvents();
+            }
+        });
+
+        //recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
         return view;
     }
 
@@ -90,6 +128,11 @@ public class ListEventsFragment extends Fragment  {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onRefresh() {
+        loadEvents();
     }
 
     public interface OnListFragmentInteractionListener {
@@ -115,16 +158,39 @@ public class ListEventsFragment extends Fragment  {
                     System.out.println("----------------Events are loaded ---------------------------");
                     setAdapter(events);
                 }
+                mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
-
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
     private void setAdapter(List<Events> events){
-        recyclerView.setAdapter(new MyListEventsRecyclerViewAdapter(events, mListener));
+        if (events != null) {
+            if (events.size() == 0){
+                noEventsText.setVisibility(View.VISIBLE);
+                recyclerView.setAdapter(new EmptyAdapter());
+            } else {
+                noEventsText.setVisibility(View.GONE);
+                adapter = new MyListEventsRecyclerViewAdapter(getActivity(), events, mListener);
+                recyclerView.setAdapter(adapter);
+                if (filterText != null && filterText.length() > 0){
+                    setFilter(filterText);
+                }
+            }
+        } else {
+            noEventsText.setVisibility(View.VISIBLE);
+            recyclerView.setAdapter(new EmptyAdapter());
+        }
+    }
+
+    public void setFilter(String text){
+        filterText = text;
+        if (adapter != null ) {
+            adapter.getFilter().filter(filterText);
+        }
     }
 }
