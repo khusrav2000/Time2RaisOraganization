@@ -11,11 +11,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.organization.data.LoginDataSource;
+import com.example.organization.data.NetworkClient;
+import com.example.organization.data.apis.Initiator;
+import com.example.organization.data.model.Request;
 import com.example.organization.requests.AddingRequest;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class EditMyRequest extends AppCompatActivity {
 
@@ -26,6 +35,13 @@ public class EditMyRequest extends AppCompatActivity {
     TextView endTimeRequest;
     EditText amountParticipants;
     EditText aboutRequest;
+
+    String name;
+    String date;
+    String startTime;
+    String endTime;
+
+    String about;
 
     // Здесь храниться дата request-а.
     Calendar requestDate = Calendar.getInstance();
@@ -62,12 +78,21 @@ public class EditMyRequest extends AppCompatActivity {
             }
         });
 
+        fillFields();
+
         nameRequest = findViewById(R.id.edit_name_request);
         dateRequest = findViewById(R.id.edit_request_date);
         startTimeRequest = findViewById(R.id.edit_request_time_start);
         endTimeRequest = findViewById(R.id.edit_request_time_end);
         amountParticipants = findViewById(R.id.edit_amount_participants);
         aboutRequest = findViewById(R.id.edit_about_request);
+
+        findViewById(R.id.edit_request).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateRequest();
+            }
+        });
 
         // установка обработчика выбора даты для request-а.
         final DatePickerDialog.OnDateSetListener selectDateRequest = new DatePickerDialog.OnDateSetListener() {
@@ -142,6 +167,48 @@ public class EditMyRequest extends AppCompatActivity {
 
     }
 
+    private void fillFields() {
+        Retrofit retrofit = NetworkClient.getRetrofitClient();
+        Initiator initiator = retrofit.create(Initiator.class);
+        Call call = initiator.getRequestByRequestId(LoginDataSource.getInitiator().getToken(), myRequestId);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                if (response.code() == 200){
+                    Request request = (Request) response.body();
+                    setRequestInformation(request);
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void setRequestInformation(Request request) {
+        nameRequest.setText(request.getName());
+        // TODO: Продолжить сохранение об request-е.
+    }
+
+    private void updateRequest() {
+        // Инициализация данных о request-е.
+        name = nameRequest.getText().toString();
+
+        //averageSum = Double.parseDouble(averageSumRequest.getText().toString());
+        //numberOfEvents = Integer.parseInt(numberOfEventsHeld.getText().toString());
+
+        date = dateRequest.getText().toString();
+        startTime = startTimeRequest.getText().toString();
+        endTime = endTimeRequest.getText().toString();
+        about = aboutRequest.getText().toString();
+
+        if (validateData()){
+            // TODO: Обновить данные request-а.
+        }
+    }
+
     private void setDateRequest() {
         String myFormat = "MM/dd/yy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -161,6 +228,35 @@ public class EditMyRequest extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         endTimeRequest.setText(sdf.format(requestEndTime.getTime()));
+    }
+
+    private boolean validateData() {
+
+        if (name == null || name.equals("")){
+            nameRequest.setError(getString(R.string.name_request_error));
+            nameRequest.requestFocus();
+            return false;
+        }
+
+        if (date == null || date.equals("")){
+            dateRequest.setError(getString(R.string.date_request_error));
+            dateRequest.requestFocus();
+            return false;
+        }
+
+        if (startTime == null || startTime.equals("")){
+            startTimeRequest.setError(getString(R.string.start_time_request_error));
+            startTimeRequest.requestFocus();
+            return false;
+        }
+
+        if (endTime == null || endTime.equals("")){
+            endTimeRequest.setError(getString(R.string.end_time_request_error));
+            endTimeRequest.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 
 }

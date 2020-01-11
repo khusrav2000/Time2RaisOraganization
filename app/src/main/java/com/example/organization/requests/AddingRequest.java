@@ -47,8 +47,7 @@ public class AddingRequest extends AppCompatActivity {
     String date;
     String startTime;
     String endTime;
-    double averageSum;
-    int numberOfEvents;
+
     String about;
 
     // Здесь храниться дата request-а.
@@ -175,15 +174,15 @@ public class AddingRequest extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Инициализация данных о request-е.
-                name = nameRequest.getText().toString().trim();
+                name = nameRequest.getText().toString();
 
                 //averageSum = Double.parseDouble(averageSumRequest.getText().toString());
                 //numberOfEvents = Integer.parseInt(numberOfEventsHeld.getText().toString());
 
-                date = dateRequest.getText().toString().trim();
-                startTime = startTimeRequest.getText().toString().trim();
-                endTime = endTimeRequest.getText().toString().trim();
-                about = aboutRequest.getText().toString().trim();
+                date = dateRequest.getText().toString();
+                startTime = startTimeRequest.getText().toString();
+                endTime = endTimeRequest.getText().toString();
+                about = aboutRequest.getText().toString();
 
                 if (validateData()){
                     Request request = new Request(-1, -1,
